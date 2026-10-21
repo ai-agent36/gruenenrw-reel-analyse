@@ -1,0 +1,1156 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Grüne NRW – Reel-Analyse (animiert)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Caveat:wght@500;700&family=Barlow+Condensed:ital,wght@1,800&display=block" rel="stylesheet">
+<style>@font-face { font-family: "GrueneType"; src: local("GrueneType BlackCondensedItalic"), local("Barlow Condensed ExtraBold Italic"); }
+:root {
+  --papier: #0d0d0c; --tinte: #EEEDE6; --grau: #9C9A91; --dunkel: #55534D; --linie: rgba(238,237,230,.13);
+  --gruen: #62E08A; --gruen-tief: #2F7A4A; --rot: #F0705F; --gelb: #F2E27D;
+  --sans: "Space Grotesk", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, monospace;
+  --serif: "Instrument Serif", Georgia, serif; --hand: "Caveat", cursive;
+}
+@page { size: 1920px 1080px; margin: 0; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { margin: 0; padding: 0; background: var(--papier); }
+body { color: var(--tinte); font-family: var(--sans); }
+
+/* ---- Folie auf schwarzem Skizzenpapier ---- */
+.folie {
+  width: 1920px; height: 1080px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+  padding: 72px 96px 110px;
+  background-color: var(--papier);
+  background-image:
+    url("bilder/papier-korn.png"),
+    url("bilder/papier-fasern.png"),
+    repeating-linear-gradient(0deg, rgba(238,237,230,.035) 0 1px, transparent 1px 48px),
+    repeating-linear-gradient(90deg, rgba(238,237,230,.025) 0 1px, transparent 1px 48px),
+    radial-gradient(ellipse at 30% 20%, #171715 0%, #0b0b0a 70%);
+  background-size: 320px 320px, 1920px 1080px, auto, auto, auto;
+}
+.folie::before { /* Bleistift-Randlinie wie im Skizzenbuch */
+  content: ""; position: absolute; left: 56px; top: 40px; bottom: 40px; width: 0;
+  border-left: 1.5px solid rgba(98,224,138,.22); filter: url(#none);
+}
+.folie::after { /* leichte Kritzelecke */
+  content: ""; position: absolute; right: 60px; top: 46px; width: 120px; height: 34px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 34'><path d='M2 20 C 20 4, 30 30, 50 14 S 80 4, 92 22 S 112 26, 118 10' stroke='%2362E08A' stroke-opacity='.35' stroke-width='2' fill='none' stroke-linecap='round'/></svg>") no-repeat;
+}
+.kicker { font-family: var(--mono); font-size: 20px; letter-spacing: .14em; text-transform: uppercase; color: var(--gruen); margin-bottom: 10px; }
+h1, h2 { font-family: var(--sans); font-weight: 600; letter-spacing: -.03em; margin: 0; color: var(--gruen); }
+h2 { font-size: 76px; line-height: 1.02; margin-bottom: 34px; }
+h2.serif { font-family: var(--serif); font-weight: 400; font-size: 72px; letter-spacing: -.01em; color: var(--tinte); line-height: 1; margin-bottom: 22px; }
+p { font-size: 25px; line-height: 1.42; margin: 0 0 14px; color: #D9D7CE; }
+b { color: var(--tinte); font-weight: 600; }
+.gruen { color: var(--gruen); } .rot { color: var(--rot); } .leise { color: var(--grau); } .mono { font-family: var(--mono); } .klein { font-size: 19px; }
+.lead { font-size: 27px; color: #D9D7CE; max-width: 1500px; margin-top: -16px; }
+
+.fuss { position: absolute; left: 96px; right: 96px; bottom: 34px; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 15px; color: var(--dunkel); letter-spacing: .04em; border-top: 1px solid var(--linie); padding-top: 12px; }
+.fuss .seite { color: var(--gruen); }
+
+/* ---- Titel ---- */
+.titel h1 { font-size: 150px; line-height: .95; color: var(--tinte); margin-top: 60px; }
+.titel h1 .gruen { color: var(--gruen); }
+.unterzeile { font-size: 30px; color: var(--grau); margin-top: 36px; }
+.titel-streifen { position: absolute; right: -40px; top: 70px; height: 900px; overflow: hidden; width: 760px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; transform: rotate(4deg); }
+.titel-streifen img { width: 100%; aspect-ratio: 9/16; object-fit: cover; border-radius: 10px; border: 1px solid var(--linie); filter: saturate(.85); }
+.titel-streifen img:nth-child(odd) { transform: translateY(40px); }
+.kritzel { position: absolute; }
+.hand { position: absolute; font-family: var(--hand); font-size: 44px; color: var(--gruen); transform: rotate(-4deg); }
+
+/* ---- Kacheln, Karten ---- */
+.kacheln { display: grid; gap: 22px; margin-bottom: 30px; }
+.kacheln.k4 { grid-template-columns: repeat(4, 1fr); } .kacheln.k3 { grid-template-columns: repeat(3, 1fr); }
+.kachel { border: 1px solid var(--linie); background: rgba(238,237,230,.025); padding: 26px 28px; border-radius: 4px; }
+.k-wert { font-family: "GrueneType", "Barlow Condensed", var(--sans); font-size: 76px; line-height: 1; color: var(--tinte); letter-spacing: .01em; }
+.kachel.gut .k-wert { color: var(--gruen); } .kachel.schlecht .k-wert { color: var(--rot); }
+.k-label { font-family: var(--mono); font-size: 18px; text-transform: uppercase; letter-spacing: .08em; color: var(--gruen); margin-top: 12px; }
+.kachel.schlecht .k-label { color: var(--rot); }
+.k-sub { font-size: 19px; color: var(--grau); margin-top: 6px; line-height: 1.3; }
+.kacheln.gross .k-wert { font-size: 110px; } .kacheln.gross .kachel { padding: 34px; } .kacheln.gross .k-sub { font-size: 22px; }
+.karte { border: 1px solid var(--linie); background: rgba(238,237,230,.025); padding: 28px 32px; border-radius: 4px; }
+.karte.warnung { border-color: rgba(240,112,95,.45); margin-top: 26px; } .karte.warnung .k-titel { color: var(--rot); }
+.k-titel { font-family: var(--mono); font-size: 19px; letter-spacing: .1em; text-transform: uppercase; color: var(--gruen); margin-bottom: 14px; }
+.merksatz { font-family: var(--serif); font-size: 44px; line-height: 1.12; color: var(--tinte); max-width: 1600px; border-left: 3px solid var(--gruen); padding-left: 28px; }
+.merksatz.klein { font-size: 32px; margin-top: 26px; }
+.merksatz em { color: var(--gruen); font-style: italic; }
+.notiz { position: absolute; font-family: var(--hand); font-size: 38px; color: var(--gruen); }
+.fussnote { font-family: var(--mono); font-size: 16px; color: var(--grau); margin-top: 18px; }
+
+.spalten { display: grid; gap: 40px; }
+.spalten.s2 { grid-template-columns: 1fr 1fr; } .spalten.s3 { grid-template-columns: repeat(3, 1fr); } .spalten.s4 { grid-template-columns: repeat(4, 1fr); }
+.spalten.s2b { grid-template-columns: 1100px 1fr; }
+.randspalte p { font-size: 24px; } .randspalte h3 { font-family: var(--mono); font-size: 19px; letter-spacing: .1em; text-transform: uppercase; color: var(--gruen); margin: 0 0 10px; font-weight: 500; }
+.randspalte .hand-notiz { font-family: var(--hand); font-size: 36px; color: var(--gruen); line-height: 1.1; margin: 18px 0; transform: rotate(-2deg); }
+
+/* ---- Diagramme ---- */
+.diagramm { display: block; overflow: visible; }
+.d-label { font-family: var(--sans); font-size: 22px; fill: var(--tinte); }
+.d-sub { font-family: var(--mono); font-size: 14px; fill: var(--grau); }
+.d-wert { font-family: var(--mono); font-size: 20px; fill: var(--tinte); font-weight: 500; }
+.d-achse { font-family: var(--mono); font-size: 16px; fill: var(--grau); }
+.d-notiz { font-family: var(--hand); font-size: 30px; fill: var(--gruen); }
+.d-beschriftung { font-family: var(--hand); font-size: 28px; fill: var(--tinte); }
+.d-segment { font-family: var(--mono); font-size: 15px; fill: #0d0d0c; font-weight: 600; }
+.d-titel { font-family: var(--mono); font-size: 17px; letter-spacing: .08em; text-transform: uppercase; color: var(--grau); margin: 6px 0 14px; }
+.legende { display: flex; gap: 30px; font-family: var(--mono); font-size: 17px; color: var(--grau); margin-top: 14px; flex-wrap: wrap; }
+.legende.klein { font-size: 15px; gap: 20px; }
+.legende i { display: inline-block; width: 14px; height: 14px; border-radius: 3px; margin-right: 8px; vertical-align: -1px; }
+
+/* ---- Tabelle ---- */
+.tabelle { width: 100%; border-collapse: collapse; font-size: 23px; }
+.tabelle th { font-family: var(--mono); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--grau); font-weight: 500; text-align: left; padding: 0 12px 12px; border-bottom: 1px solid var(--linie); }
+.tabelle td { padding: 3px 12px; border-bottom: 1px solid rgba(238,237,230,.07); vertical-align: middle; }
+.tabelle .r { text-align: right; font-family: var(--mono); font-size: 21px; } .tabelle .b { color: var(--gruen); font-weight: 600; }
+.tabelle tr.hl td { background: rgba(98,224,138,.07); }
+.tabelle .leise { font-size: 19px; }
+img.mini { width: 32px; height: 42px; object-fit: cover; border-radius: 4px; display: block; }
+
+/* ---- Steckbriefe ---- */
+.steckbrief { padding: 24px 26px; display: flex; flex-direction: column; gap: 12px; }
+.steckbrief p { font-size: 20px; line-height: 1.38; margin: 0; }
+.sb-kopf { display: flex; gap: 18px; align-items: center; }
+.sb-kopf img { width: 84px; height: 112px; object-fit: cover; border-radius: 6px; border: 1px solid var(--linie); }
+.sb-name { font-size: 34px; font-weight: 600; color: var(--gruen); letter-spacing: -.02em; line-height: 1.05; }
+.sb-zahlen { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--linie); border-bottom: 1px solid var(--linie); padding: 10px 0; }
+.sb-zahlen b { display: block; font-family: "GrueneType", "Barlow Condensed", var(--sans); font-size: 44px; color: var(--tinte); line-height: 1; }
+.sb-zahlen span { font-family: var(--mono); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; color: var(--grau); }
+.sb-ziel { font-size: 19px; line-height: 1.35; color: #D9D7CE; } .sb-ziel .mono { font-size: 14px; letter-spacing: .1em; margin-right: 6px; }
+.sb-komm .leise { font-family: var(--mono); font-size: 13px; }
+.sb-best { font-size: 18px; color: var(--grau); margin-top: auto; } .sb-best .mono { font-size: 13px; color: var(--gruen); letter-spacing: .1em; margin-right: 6px; }
+
+/* ---- Galerien ---- */
+.formatgalerie { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px 34px; }
+.fg-bilder { display: flex; gap: 8px; } .fg-bilder img { width: 112px; height: 170px; object-fit: cover; border-radius: 6px; border: 1px solid var(--linie); }
+.fg-name { font-size: 25px; font-weight: 600; color: var(--gruen); margin: 10px 0 2px; letter-spacing: -.01em; }
+.fg .mono { font-size: 14px; letter-spacing: .06em; }
+.fg-text { font-size: 18px; line-height: 1.35; color: #D9D7CE; margin-top: 6px; }
+.raster10 { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 26px 30px; }
+.r10 { display: grid; grid-template-columns: 150px 1fr; gap: 16px; align-items: start; }
+.r10 .r10-text { min-width: 0; }
+.r10 { position: relative; } .r10 img { width: 150px; height: 267px; object-fit: cover; border-radius: 8px; border: 1px solid var(--linie); }
+.r10-rang { position: absolute; top: -18px; left: -10px; font-family: "GrueneType", "Barlow Condensed", var(--sans); font-size: 64px; color: var(--gruen); z-index: 2; text-shadow: 0 2px 8px #000; }
+.r10-plays { font-family: "GrueneType", "Barlow Condensed", var(--sans); font-size: 44px; color: var(--gruen); margin-top: 8px; line-height: 1; }
+.r10-plays.rot { color: var(--rot); }
+.r10-titel { font-size: 21px; line-height: 1.25; margin: 6px 0 4px; color: var(--tinte); }
+.r10 .mono { font-size: 14px; display: block; }
+.r10-extra { font-size: 16px; color: var(--grau); margin-top: 8px; line-height: 1.3; }
+.regel { border-top: 2px solid var(--gruen); padding-top: 16px; }
+.regel.rot { border-top-color: var(--rot); } .regel.rot .regel-t { color: var(--rot); }
+.regel-t { font-size: 32px; font-weight: 600; color: var(--gruen); margin-bottom: 8px; letter-spacing: -.02em; }
+.regel p { font-size: 22px; }
+
+/* ---- Deep Dive ---- */
+.dd { display: grid; grid-template-columns: 440px 1fr; gap: 56px; }
+.dd-thumb { width: 440px; height: 600px; object-fit: cover; border-radius: 10px; border: 1px solid var(--linie); }
+.dd-zahlen { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px 8px; margin: 16px 0 10px; }
+.dd-zahlen b { display: block; font-family: "GrueneType", "Barlow Condensed", var(--sans); font-size: 40px; color: var(--gruen); line-height: 1; }
+.dd-zahlen span { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--grau); }
+.dd-links .mono { font-size: 14px; }
+.dd-hook { margin-bottom: 20px; } .dd-hook .mono { font-size: 14px; letter-spacing: .1em; display: block; margin-bottom: 6px; }
+.dd-hook img { height: 210px; border-radius: 6px; border: 1px solid var(--linie); }
+.dd-text p { font-size: 22px; line-height: 1.4; }
+.dd-text h3 { font-family: var(--mono); font-size: 16px; letter-spacing: .1em; text-transform: uppercase; color: var(--gruen); margin: 14px 0 6px; font-weight: 500; }
+.dd-text .zitat { font-family: var(--serif); font-style: italic; font-size: 30px; color: var(--tinte); line-height: 1.2; margin: 6px 0 12px; }
+.dd-text .spalten { gap: 34px; }
+
+.empfehlungen { margin: 0; padding: 0; list-style: none; counter-reset: e; columns: 2; column-gap: 70px; }
+.empfehlungen li { counter-increment: e; break-inside: avoid; font-size: 23px; line-height: 1.38; color: #D9D7CE; padding: 0 0 22px 70px; position: relative; }
+.empfehlungen li::before { content: counter(e, decimal-leading-zero); position: absolute; left: 0; top: -6px; font-family: "GrueneType", "Barlow Condensed", var(--sans); font-size: 46px; color: var(--gruen); }
+.empfehlungen b { display: block; font-size: 27px; color: var(--gruen); margin-bottom: 4px; letter-spacing: -.01em; }
+
+/* ---- Creator & TikTok ---- */
+.creator-streifen { display: flex; gap: 16px; margin-bottom: 30px; }
+.creator-streifen > div { width: 150px; }
+.creator-streifen img { width: 150px; height: 200px; object-fit: cover; border-radius: 8px; border: 1px solid var(--linie); }
+.cs-plays { font-family: "GrueneType", "Barlow Condensed", var(--sans); font-size: 34px; color: var(--gruen); line-height: 1; margin-top: 6px; }
+.cs-titel { font-size: 16px; line-height: 1.2; margin: 3px 0; color: var(--tinte); }
+.creator-streifen .mono { font-size: 12px; }
+.liste { margin: 0; padding-left: 22px; } .liste li { font-size: 20px; line-height: 1.38; color: #D9D7CE; margin-bottom: 8px; }
+.raster10.tt { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.kacheln.kompakt .kachel { padding: 16px 24px; } .kacheln.kompakt .k-wert { font-size: 58px; } .kacheln.kompakt { margin-bottom: 18px; }
+</style><link rel="stylesheet" href="live.css"></head><body class="live">
+<div id="buehne"><section class="folie titel">
+  <div class="kicker">Instagram · Reel-Analyse · Stand 21.10.2026</div>
+  <h1>Was bei<br/><span class="gruen">@gruenenrw</span><br/>wirklich zählt</h1>
+  <p class="unterzeile">147 Reels aus zwölf Monaten: Formate, Gesichter,<br/>Viral-Hits, Flops, Zielgruppen, die neuen Creator,<br/>ein Blick auf TikTok und was daraus für 2027 folgt.</p>
+  <div class="titel-streifen"><img src="bilder/thumbs/DWcDO3SiExT.jpg"/><img src="bilder/thumbs/DbdevKEIIwl.jpg"/><img src="bilder/thumbs/DeG34KjuXzq.jpg"/><img src="bilder/thumbs/DcgQCTbMhNi.jpg"/><img src="bilder/thumbs/DaXV6xeIhbl.jpg"/><img src="bilder/thumbs/DRfFF0EDA4z.jpg"/><img src="bilder/thumbs/DT-2gynjJpb.jpg"/><img src="bilder/thumbs/DUYfLvRDOI1.jpg"/><img src="bilder/thumbs/DcjLQh9IzDc.jpg"/></div>
+  <svg class="kritzel" style="left:1020px;top:520px" width="300" height="120" viewBox="0 0 300 120"><path d="M10 90 C 60 20, 140 120, 200 50 S 280 30, 290 60" stroke="#62E08A" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M276 44 L292 60 L272 70" stroke="#62E08A" stroke-width="3" fill="none" stroke-linecap="round"/></svg>
+  <div class="hand" style="left:1040px;top:470px">die 9 stärksten Reels</div>
+  <div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">01</span></div>
+</section>
+<section class="folie "><div class="kicker">Lage am Morgen</div><h2>Auf einen Blick</h2>
+  <div class="kacheln k4">
+    <div class="kachel "><div class="k-wert">3,39 Mio.</div><div class="k-label">Plays in 12 Monaten</div><div class="k-sub">147 Reels · Ø 12 pro Monat</div></div>
+    <div class="kachel "><div class="k-wert">7,2 Tsd.</div><div class="k-label">Plays im Median</div><div class="k-sub">das „normale“ Reel</div></div>
+    <div class="kachel "><div class="k-wert">4,9 %</div><div class="k-label">Interaktionsrate (Median)</div><div class="k-sub">(Likes + Kommentare) / Plays</div></div>
+    <div class="kachel "><div class="k-wert">35.616</div><div class="k-label">Follower heute</div><div class="k-sub">1.823 Beiträge insgesamt</div></div>
+    <div class="kachel gut"><div class="k-wert">25</div><div class="k-label">Viral-Hits</div><div class="k-sub">≥ 3× Median (≥ 22 Tsd. Plays)</div></div>
+    <div class="kachel schlecht"><div class="k-wert">14</div><div class="k-label">Flops</div><div class="k-sub">< ⅓ Median (< 2,4 Tsd. Plays)</div></div>
+    <div class="kachel "><div class="k-wert">16</div><div class="k-label">Reels über Followerzahl</div><div class="k-sub">erreichen mehr Menschen als der Kanal Follower hat</div></div>
+    <div class="kachel "><div class="k-wert">189 Tsd.</div><div class="k-label">Likes gesamt</div><div class="k-sub">7.634 Kommentare</div></div>
+  </div>
+  <div class="merksatz">Der Kanal wächst über <em>Gesichter und Collabs</em>, nicht über Grafiken. Neun von zehn Top-Reels zeigen einen Menschen, der direkt spricht, oder einen Moment, über den man reden will.</div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">02</span></div></section>
+<section class="folie "><div class="kicker">Datenbasis</div><h2>So ist die Analyse entstanden</h2>
+  <div class="spalten s3">
+    <div class="karte"><div class="k-titel">1 · Abruf</div><p>Alle Reels von <b>@gruenenrw</b> seit 21.10.2025 über Apify (<i>instagram-reel-scraper</i>), dazu Profile von 20 Vergleichs-Accounts. Kosten unter 1 $.</p><p class="leise">Collab-Reels erscheinen bei beiden Accounts – die Plays zählen gemeinsam.</p></div>
+    <div class="karte"><div class="k-titel">2 · Zerlegung</div><p>Jedes Video lokal geladen und transkribiert (whisper.cpp, Deutsch), Bildschnitte gezählt, Hook (0–3 s) und Kontaktbögen erzeugt. Skript, Format und Zahlen je Reel liegen in <span class="mono">reels/</span> und <span class="mono">reels.csv</span>.</p></div>
+    <div class="karte"><div class="k-titel">3 · Zuordnung</div><p>Wer ist zu sehen? Gesichter anhand der Vorschaubilder, Markierungen, Collabs und Transkripte zugeordnet; dazu Format und Thema je Reel. Kommentare: die ≈ 8 neuesten je Reel (1.108 insgesamt), regelbasiert grob eingeordnet.</p></div>
+  </div>
+  <div class="karte warnung"><div class="k-titel">Was nicht messbar ist</div><p><b>Follower-Verlauf:</b> Instagram zeigt nur den heutigen Stand (35.616). Social Blade und das Webarchiv haben für @gruenenrw keine Historie. <b>Demografie</b> (Alter, Geschlecht, Orte), <b>Shares, Saves, Wiedergabedauer</b> und <b>Werbebudgets</b> sieht nur der Account selbst in den Insights. Zielgruppen sind deshalb aus Themen und Kommentaren <i>abgeleitet</i>. Personen sind per Bild zugeordnet; eine Creatorin (Trend-Reels) ist namentlich nicht markiert.</p></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">03</span></div></section>
+<section class="folie "><div class="kicker">Verlauf · Reichweite je Reel</div><h2>Jedes Reel ein Punkt</h2>
+  <p class="lead">147 Reels zwischen 21.10.2025 und 20.10.2026. Die Spitzen kommen nicht regelmäßig, sondern in Wellen: Gökçe im März, der Merz-Clip im Juli, Gamescom im August.</p>
+  <svg class="diagramm" viewBox="0 0 1760 560" width="1760" height="560">
+    <line x1="100" x2="1720" y1="510" y2="510" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="86" y="510" class="d-achse" text-anchor="end" dominant-baseline="middle">100</text><line x1="100" x2="1720" y1="390" y2="390" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="86" y="390" class="d-achse" text-anchor="end" dominant-baseline="middle">1,0 Tsd.</text><line x1="100" x2="1720" y1="270" y2="270" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="86" y="270" class="d-achse" text-anchor="end" dominant-baseline="middle">10 Tsd.</text><line x1="100" x2="1720" y1="150" y2="150" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="86" y="150" class="d-achse" text-anchor="end" dominant-baseline="middle">100 Tsd.</text><line x1="100" x2="1720" y1="30" y2="30" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="86" y="30" class="d-achse" text-anchor="end" dominant-baseline="middle">1,00 Mio.</text>
+    <line x1="152.93032786885246" x2="152.93032786885246" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="158.93032786885246" y="544" class="d-achse">Nov</text><line x1="285.7172131147541" x2="285.7172131147541" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="291.7172131147541" y="544" class="d-achse">Dez</text><line x1="422.9303278688525" x2="422.9303278688525" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="428.9303278688525" y="544" class="d-achse">Jan ’26</text><line x1="560.1434426229508" x2="560.1434426229508" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="566.1434426229508" y="544" class="d-achse">Feb</text><line x1="684.077868852459" x2="684.077868852459" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="690.077868852459" y="544" class="d-achse">Mär</text><line x1="821.1065573770492" x2="821.1065573770492" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="827.1065573770492" y="544" class="d-achse">Apr</text><line x1="953.8934426229508" x2="953.8934426229508" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="959.8934426229508" y="544" class="d-achse">Mai</text><line x1="1091.1065573770493" x2="1091.1065573770493" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="1097.1065573770493" y="544" class="d-achse">Jun</text><line x1="1223.8934426229507" x2="1223.8934426229507" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="1229.8934426229507" y="544" class="d-achse">Jul</text><line x1="1361.1065573770493" x2="1361.1065573770493" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="1367.1065573770493" y="544" class="d-achse">Aug</text><line x1="1498.3196721311476" x2="1498.3196721311476" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="1504.3196721311476" y="544" class="d-achse">Sep</text><line x1="1631.1065573770493" x2="1631.1065573770493" y1="30" y2="510" stroke="rgba(238,237,230,.13)" stroke-width=".6"/>
+      <text x="1637.1065573770493" y="544" class="d-achse">Okt</text>
+    <line x1="100" x2="1720" y1="286.84577054733836" y2="286.84577054733836" stroke="#F2E27D" stroke-width="1.5" stroke-dasharray="8 6" opacity=".7"/>
+    <text x="1720" y="276.84577054733836" class="d-notiz" text-anchor="end" fill="#F2E27D">Median 7,2 Tsd.</text>
+    <circle cx="107.23760245901639" cy="249.28414599764477" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="147.19451844262295" cy="271.04755329658803" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="169.48125" cy="306.2383795272982" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="173.66690573770492" cy="228.09602466840016" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="200.31967213114754" cy="246.34288020329245" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="204.62884221311475" cy="255.11821453351104" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="213.4202868852459" cy="345.4275219115079" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="222.12371926229508" cy="284.8192194880943" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="222.50461065573768" cy="262.73892292736434" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="226.9970799180328" cy="328.89569732026763" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="231.2014856557377" cy="200.66790541618286" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="235.71326844262293" cy="264.78709485066315" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="262.33007172131147" cy="279.0864856725742" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="262.33970286885244" cy="132.6346598659959" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="271.1366290983607" cy="338.1591975276482" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="275.43186475409834" cy="294.1619225465677" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="288.91454918032787" cy="334.6742289995211" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="292.9752049180328" cy="192.87221471019205" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="306.2767930327869" cy="212.14439095295648" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="319.8587090163934" cy="309.8496377619166" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="337.35015368852453" cy="346.29892406752566" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="364.20363729508193" cy="335.145044843591" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="368.21593237704917" cy="325.3711519431773" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="448.434118852459" cy="286.84577054733836" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="457.1140881147541" cy="312.9874235215249" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="483.4800717213115" cy="241.8336354453749" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="492.0451331967213" cy="325.3410013274516" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="514.7276639344262" cy="310.0740313823381" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="536.9693647540984" cy="142.1008672791943" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="545.7563012295082" cy="300.04091614861204" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="571.900256147541" cy="257.72030638781473" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="576.9996926229508" cy="297.48892624332007" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="581.0429303278688" cy="149.6685603165625" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="603.3199282786886" cy="247.73834109377532" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="607.8252561475409" cy="264.05662532667384" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="616.1182889344262" cy="267.6861005085922" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="634.2105020491803" cy="349.9621492182358" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="642.1077356557377" cy="296.9704488311716" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="669.7700307377049" cy="352.41188499663315" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="673.7399590163934" cy="341.9354412729665" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="700.2213114754098" cy="343.72724716820255" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="704.8558913934427" cy="348.250177619797" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="709.037243852459" cy="321.7735545540669" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="722.6621413934425" cy="345.56063906645875" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="779.6641905737705" cy="261.087870893597" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="784.4819159836065" cy="277.1260701195111" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="789.0531762295082" cy="334.6742289995211" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="793.3433401639344" cy="325.77990178620666" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="802.3252561475409" cy="240.781857359225" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="807.1919569672132" cy="59.394863489561146" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="819.7287909836065" cy="317.13113954019093" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="828.6044569672131" cy="235.34036623009763" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="850.8150102459016" cy="328.52591240617755" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="859.5714139344262" cy="264.28963715107795" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="863.8781762295082" cy="339.0534028071944" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="886.1082479508196" cy="309.437039586781" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="894.4513319672132" cy="321.9427145765211" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="898.2099385245901" cy="341.33794716283484" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="912.5977459016393" cy="297.80783802581425" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="916.8838627049181" cy="309.5704976311051" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="917.2415471311475" cy="300.99564192507125" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="922.1382172131148" cy="299.7449631242522" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="925.7845286885247" cy="337.41290308745647" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="929.5650102459017" cy="312.25538816325206" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="947.0506147540984" cy="497.95553458589245" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="947.1048155737705" cy="322.3965108616071" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="947.8927254098361" cy="204.76248561201038" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="970.2080430327868" cy="278.50652920144074" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="987.8439036885246" cy="313.7660834402145" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1005.7131659836066" cy="272.03524607446775" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1010.0132684426229" cy="225.16230333489386" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1018.7196721311475" cy="262.4225235472034" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1041.234682377049" cy="357.10105808835846" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1049.4397028688522" cy="268.3180524889963" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1067.7380122950822" cy="266.62515418453916" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1072.0350922131147" cy="272.5362018782812" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1076.5600409836065" cy="321.3251272618299" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1098.8589139344263" cy="218.9946150538333" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1102.9808401639343" cy="336.71462448983084" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1178.2131147540983" cy="270.214112115485" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1179.0705430327869" cy="204.49785716912834" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1182.2563524590164" cy="301.92008561539353" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1186.608350409836" cy="451.8840192783857" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1186.6199795081966" cy="262.64380125527464" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1195.9261782786884" cy="321.9568360609128" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1200.1865778688525" cy="342.8131060366443" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1204.7590163934426" cy="288.2468833385732" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1218.1503073770493" cy="298.8036170934831" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1222.5119364754098" cy="289.7171314209089" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1231.4738217213114" cy="221.17227749705228" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1235.413524590164" cy="187.5297092515442" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1239.1651639344263" cy="131.1966602945655" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1249.119262295082" cy="192.93156888934283" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1253.6603483606557" cy="229.95006450216357" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1257.9101946721312" cy="324.741623382881" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1280.1052766393443" cy="189.40816866827606" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1289.308606557377" cy="211.48740528526508" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1297.8667520491804" cy="277.25768968576574" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1319.6547643442623" cy="312.9993152130376" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1328.560911885246" cy="275.55463434869336" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1346.3647028688524" cy="224.20338639286115" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1350.79431352459" cy="277.8662461261236" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1359.724692622951" cy="68.18562271065099" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1382.2764856557378" cy="265.2703056988635" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1403.7036885245902" cy="240.00232729085644" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1439.6447233606557" cy="196.3973426425065" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1443.3790983606557" cy="296.94422287851125" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1443.3877049180328" cy="407.5562145868591" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1448.8954405737704" cy="267.7359764218911" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1451.6935963114754" cy="276.1493783798076" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1465.6149590163934" cy="313.2377206508782" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1466.0844262295082" cy="238.70559976140282" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1474.5000512295082" cy="123.00788611521187" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1479.527305327869" cy="165.014889015473" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1483.5293545081968" cy="240.54736391570793" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1488.068954918033" cy="247.79276609743283" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1492.4644467213113" cy="275.5198598782116" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1496.9668032786885" cy="343.59872592469947" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1501.6845286885246" cy="237.10105808835846" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1510.2261782786884" cy="259.2749807020681" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1535.6050717213113" cy="421.34633298187566" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1545.5270491803278" cy="284.6739838962028" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1559.0514856557377" cy="263.00254546699364" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1563.3749487704918" cy="461.41995400560745" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1563.4272540983607" cy="195.7388755422237" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1566.9934426229509" cy="284.6325622451985" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1572.3675204918031" cy="315.39654452048654" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1576.4490266393443" cy="296.9267462392367" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1593.1704405737705" cy="375.05949301988613" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1594.427356557377" cy="296.13769602095806" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1602.9694672131147" cy="293.039004010752" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1607.409579918033" cy="337.05315909088654" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1615.251793032787" cy="231.85244802084532" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1620.0588114754098" cy="341.68737096961024" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1620.9113729508197" cy="294.30296549551986" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1634.0766905737705" cy="311.7768876903661" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1637.9979508196723" cy="350.64340516523873" r="6" fill="#F0705F" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1638.5831967213114" cy="261.0615234017172" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1650.9064036885247" cy="121.92356702563507" r="8" fill="#62E08A" fill-opacity="0.95" stroke="#0d0d0c" stroke-width="2"/><circle cx="1656.6057889344263" cy="245.99320008333427" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1660.515368852459" cy="273.33010368448856" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1669.6542520491805" cy="317.6226752855781" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1681.505942622951" cy="321.3251272618299" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1686.499743852459" cy="302.91020004053416" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1691.7983606557377" cy="305.0813611762576" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1696.1136270491802" cy="292.0351333497166" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/><circle cx="1713.9412397540982" cy="283.6143451930673" r="6" fill="#9C9A91" fill-opacity="0.55" stroke="#0d0d0c" stroke-width="2"/>
+    <text x="823.1919569672132" y="59.394863489561146" class="d-beschriftung" text-anchor="start" dominant-baseline="middle">Emine Gökçe 569 Tsd.</text><text x="1343.724692622951" y="68.18562271065099" class="d-beschriftung" text-anchor="end" dominant-baseline="middle">Merz-Clip 481 Tsd.</text><text x="1634.9064036885247" y="117.92356702563507" class="d-beschriftung" text-anchor="end" dominant-baseline="middle">Mona Spitzenkandidatin</text><text x="1458.5000512295082" y="141.00788611521187" class="d-beschriftung" text-anchor="end" dominant-baseline="middle">Gamescom mit Ricarda</text><text x="278.33970286885244" y="132.6346598659959" class="d-beschriftung" text-anchor="start" dominant-baseline="middle">Fankultur retten</text><text x="552.9693647540984" y="142.1008672791943" class="d-beschriftung" text-anchor="start" dominant-baseline="middle">ICE / AfD-Verbot</text><text x="963.0506147540984" y="497.95553458589245" class="d-beschriftung" text-anchor="start" dominant-baseline="middle">Doppelt gepostet: 126</text>
+  </svg>
+  <div class="legende"><span><i style="background:#62E08A"></i>Viral (≥ 3× Median)</span><span><i style="background:#9C9A91"></i>normal</span><span><i style="background:#F0705F"></i>Flop (&lt; ⅓ Median)</span><span class="leise">Plays logarithmisch</span></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">04</span></div></section>
+<section class="folie "><div class="kicker">Verlauf · Reichweite</div><h2>Reichweite pro Monat</h2>
+  <div class="spalten s2b">
+    <div><div class="d-titel">Plays im Median je Monat</div><svg class="diagramm" viewBox="0 0 1080 400" width="1080" height="400">
+    <line x1="90" x2="1050" y1="346" y2="346" stroke="rgba(238,237,230,.13)" stroke-dasharray="0"/>
+      <text x="76" y="346" class="d-achse" text-anchor="end" dominant-baseline="middle">0</text><line x1="90" x2="1050" y1="267" y2="267" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="267" class="d-achse" text-anchor="end" dominant-baseline="middle">7,1 Tsd.</text><line x1="90" x2="1050" y1="188" y2="188" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="188" class="d-achse" text-anchor="end" dominant-baseline="middle">14 Tsd.</text><line x1="90" x2="1050" y1="109" y2="109" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="109" class="d-achse" text-anchor="end" dominant-baseline="middle">21 Tsd.</text><line x1="90" x2="1050" y1="30" y2="30" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="30" class="d-achse" text-anchor="end" dominant-baseline="middle">29 Tsd.</text>
+    <text x="90" y="382" class="d-achse" text-anchor="middle">Nov</text><text x="177.27272727272728" y="382" class="d-achse" text-anchor="middle">Dez</text><text x="264.54545454545456" y="382" class="d-achse" text-anchor="middle">Jan ’26</text><text x="351.8181818181818" y="382" class="d-achse" text-anchor="middle">Feb</text><text x="439.0909090909091" y="382" class="d-achse" text-anchor="middle">Mär</text><text x="526.3636363636364" y="382" class="d-achse" text-anchor="middle">Apr</text><text x="613.6363636363636" y="382" class="d-achse" text-anchor="middle">Mai</text><text x="700.9090909090909" y="382" class="d-achse" text-anchor="middle">Jun</text><text x="788.1818181818182" y="382" class="d-achse" text-anchor="middle">Jul</text><text x="875.4545454545455" y="382" class="d-achse" text-anchor="middle">Aug</text><text x="962.7272727272727" y="382" class="d-achse" text-anchor="middle">Sep</text><text x="1050" y="382" class="d-achse" text-anchor="middle">Okt</text>
+    <path d="M90.0,238.2 L177.3,307.7 L264.5,283.7 L351.8,255.1 L439.1,305.0 L526.4,295.4 L613.6,240.0 L700.9,276.2 L788.2,71.2 L875.5,224.7 L962.7,276.5 L1050.0,280.2 L1050,346 L90,346 Z" fill="#62E08A" opacity=".08"/>
+    <path d="M90.0,238.2 L177.3,307.7 L264.5,283.7 L351.8,255.1 L439.1,305.0 L526.4,295.4 L613.6,240.0 L700.9,276.2 L788.2,71.2 L875.5,224.7 L962.7,276.5 L1050.0,280.2" fill="none" stroke="#62E08A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="90" cy="238.23646563814867" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="177.27272727272728" cy="307.707713884993" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="264.54545454545456" cy="283.7417952314165" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="351.8181818181818" cy="255.06690042075735" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="439.0909090909091" cy="304.9709677419355" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="526.3636363636364" cy="295.4477559607293" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="613.6363636363636" cy="239.9538569424965" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="700.9090909090909" cy="276.17419354838705" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="788.1818181818182" cy="71.21739130434781" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="875.4545454545455" cy="224.67461430575034" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="962.7272727272727" cy="276.4955119214586" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="1050" cy="280.24053295932674" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/>
+    <text x="788.1818181818182" y="53.217391304347814" class="d-notiz" text-anchor="middle">Merz-Clip + Albanien</text>
+  </svg>
+      <div class="d-titel" style="margin-top:22px">Reels je Monat</div><svg class="diagramm" viewBox="0 0 1080 230" width="1080" height="230">
+    <line x1="90" x2="1050" y1="176" y2="176" stroke="rgba(238,237,230,.13)" stroke-dasharray="0"/>
+      <text x="76" y="176" class="d-achse" text-anchor="end" dominant-baseline="middle">0</text><line x1="90" x2="1050" y1="139.5" y2="139.5" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="139.5" class="d-achse" text-anchor="end" dominant-baseline="middle">5</text><line x1="90" x2="1050" y1="103" y2="103" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="103" class="d-achse" text-anchor="end" dominant-baseline="middle">10</text><line x1="90" x2="1050" y1="66.5" y2="66.5" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="66.5" class="d-achse" text-anchor="end" dominant-baseline="middle">15</text><line x1="90" x2="1050" y1="30" y2="30" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="30" class="d-achse" text-anchor="end" dominant-baseline="middle">20</text>
+    <text x="90" y="212" class="d-achse" text-anchor="middle">Nov</text><text x="177.27272727272728" y="212" class="d-achse" text-anchor="middle">Dez</text><text x="264.54545454545456" y="212" class="d-achse" text-anchor="middle">Jan ’26</text><text x="351.8181818181818" y="212" class="d-achse" text-anchor="middle">Feb</text><text x="439.0909090909091" y="212" class="d-achse" text-anchor="middle">Mär</text><text x="526.3636363636364" y="212" class="d-achse" text-anchor="middle">Apr</text><text x="613.6363636363636" y="212" class="d-achse" text-anchor="middle">Mai</text><text x="700.9090909090909" y="212" class="d-achse" text-anchor="middle">Jun</text><text x="788.1818181818182" y="212" class="d-achse" text-anchor="middle">Jul</text><text x="875.4545454545455" y="212" class="d-achse" text-anchor="middle">Aug</text><text x="962.7272727272727" y="212" class="d-achse" text-anchor="middle">Sep</text><text x="1050" y="212" class="d-achse" text-anchor="middle">Okt</text>
+    <path d="M90.0,73.8 L177.3,124.9 L264.5,124.9 L351.8,103.0 L439.1,95.7 L526.4,59.2 L613.6,103.0 L700.9,88.4 L788.2,73.8 L875.5,66.5 L962.7,51.9 L1050.0,88.4 L1050,176 L90,176 Z" fill="#9C9A91" opacity=".08"/>
+    <path d="M90.0,73.8 L177.3,124.9 L264.5,124.9 L351.8,103.0 L439.1,95.7 L526.4,59.2 L613.6,103.0 L700.9,88.4 L788.2,73.8 L875.5,66.5 L962.7,51.9 L1050.0,88.4" fill="none" stroke="#9C9A91" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="90" cy="73.80000000000001" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="177.27272727272728" cy="124.9" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="264.54545454545456" cy="124.9" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="351.8181818181818" cy="103" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="439.0909090909091" cy="95.69999999999999" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="526.3636363636364" cy="59.19999999999999" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="613.6363636363636" cy="103" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="700.9090909090909" cy="88.4" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="788.1818181818182" cy="73.80000000000001" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="875.4545454545455" cy="66.5" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="962.7272727272727" cy="51.900000000000006" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/><circle cx="1050" cy="88.4" r="6" fill="#9C9A91" stroke="#0d0d0c" stroke-width="2"/>
+    
+  </svg>
+    </div>
+    <div class="randspalte"><h3>Lesart</h3><p>Der Median zeigt das „normale“ Reel, ohne Ausreißer. Er schwankt zwischen <b>3.456</b> (Dez.) und <b>25.521</b> (Juli 2026).</p>
+    <p>Der Juli war der beste Monat: <b>900 Tsd. Plays</b> aus 14 Reels. Gleich mehrere Reels liefen über dem Median (Albanien, Hitze, Limbach-Rede, SPD-Reel).</p>
+    <p>Seit Juli kommen 14–17 Reels im Monat (Oktober: 12 bis zum 20.10.). Mehr Output allein hebt den Median aber nicht: Nach dem Juli-Hoch fällt er wieder.</p>
+    <div class="hand-notiz">Sept./Okt. wieder unter 7 Tsd. – neue Creator-Formate brauchen noch Anlauf</div></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">05</span></div></section>
+<section class="folie "><div class="kicker">Verlauf · Interaktion</div><h2>Interaktionsrate pro Monat</h2>
+  <div class="spalten s2b">
+    <div><svg class="diagramm" viewBox="0 0 1080 440" width="1080" height="440">
+    <line x1="90" x2="1050" y1="386" y2="386" stroke="rgba(238,237,230,.13)" stroke-dasharray="0"/>
+      <text x="76" y="386" class="d-achse" text-anchor="end" dominant-baseline="middle">0,0 %</text><line x1="90" x2="1050" y1="297" y2="297" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="297" class="d-achse" text-anchor="end" dominant-baseline="middle">2,0 %</text><line x1="90" x2="1050" y1="208" y2="208" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="208" class="d-achse" text-anchor="end" dominant-baseline="middle">4,0 %</text><line x1="90" x2="1050" y1="119" y2="119" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="119" class="d-achse" text-anchor="end" dominant-baseline="middle">6,0 %</text><line x1="90" x2="1050" y1="30" y2="30" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="30" class="d-achse" text-anchor="end" dominant-baseline="middle">8,0 %</text>
+    <text x="90" y="422" class="d-achse" text-anchor="middle">Nov</text><text x="177.27272727272728" y="422" class="d-achse" text-anchor="middle">Dez</text><text x="264.54545454545456" y="422" class="d-achse" text-anchor="middle">Jan ’26</text><text x="351.8181818181818" y="422" class="d-achse" text-anchor="middle">Feb</text><text x="439.0909090909091" y="422" class="d-achse" text-anchor="middle">Mär</text><text x="526.3636363636364" y="422" class="d-achse" text-anchor="middle">Apr</text><text x="613.6363636363636" y="422" class="d-achse" text-anchor="middle">Mai</text><text x="700.9090909090909" y="422" class="d-achse" text-anchor="middle">Jun</text><text x="788.1818181818182" y="422" class="d-achse" text-anchor="middle">Jul</text><text x="875.4545454545455" y="422" class="d-achse" text-anchor="middle">Aug</text><text x="962.7272727272727" y="422" class="d-achse" text-anchor="middle">Sep</text><text x="1050" y="422" class="d-achse" text-anchor="middle">Okt</text>
+    <path d="M90.0,233.6 L177.3,199.6 L264.5,175.7 L351.8,188.5 L439.1,217.1 L526.4,103.0 L613.6,178.1 L700.9,148.8 L788.2,99.0 L875.5,161.3 L962.7,168.5 L1050.0,207.9 L1050,386 L90,386 Z" fill="#62E08A" opacity=".08"/>
+    <path d="M90.0,233.6 L177.3,199.6 L264.5,175.7 L351.8,188.5 L439.1,217.1 L526.4,103.0 L613.6,178.1 L700.9,148.8 L788.2,99.0 L875.5,161.3 L962.7,168.5 L1050.0,207.9" fill="none" stroke="#62E08A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="90" cy="233.56648790004945" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="177.27272727272728" cy="199.61256544502618" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="264.54545454545456" cy="175.74110032362458" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="351.8181818181818" cy="188.50687859425364" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="439.0909090909091" cy="217.07375271149675" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="526.3636363636364" cy="103.02112720534677" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="613.6363636363636" cy="178.0997242282679" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="700.9090909090909" cy="148.81145037586043" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="788.1818181818182" cy="98.99776971533652" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="875.4545454545455" cy="161.307881773399" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="962.7272727272727" cy="168.49456915278785" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="1050" cy="207.9097080354978" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/>
+    <text x="526.3636363636364" y="85.02112720534677" class="d-notiz" text-anchor="middle">Ideentour</text><text x="788.1818181818182" y="80.99776971533652" class="d-notiz" text-anchor="middle">Hitze &amp; Rechte</text>
+  </svg>
+      <div class="d-titel">(Likes + Kommentare) / Plays, Median je Monat</div></div>
+    <div class="randspalte"><h3>Lesart</h3><p>Die Interaktionsrate ist im Jahresverlauf gestiegen, von <b>3,5 %</b> (Nov. 2025) auf <b>5–6,5 %</b> ab April 2026.</p>
+    <p>Die Community reagiert also immer stärker auf das, was sie sieht.</p>
+    <p>Reichweite und Interaktion laufen gegeneinander: Reels, die weit über die Community hinausgehen (Gamescom, Mona-Kandidatur), haben <b>1–3 %</b>. Reels für die Community haben <b>8–12 %</b>.</p></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">06</span></div></section>
+<section class="folie "><div class="kicker">Follower-Analyse</div><h2>35.616 Follower – und ein Kanal, der größer ist</h2>
+  <div class="spalten s2">
+    <div><div class="d-titel">Landesverbände &amp; NRW-Parteien (Follower heute)</div>
+      <svg class="diagramm" viewBox="0 -4 820 448" width="820" height="448"><g transform="translate(0,0)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Grüne Bayern</text>
+      
+      <rect x="270" y="11" width="400" height="22" rx="3" fill="#55534D"/>
+      <text x="682" y="23" class="d-wert" dominant-baseline="middle">39 Tsd.</text>
+    </g><g transform="translate(0,44)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Grüne NRW</text>
+      
+      <rect x="270" y="11" width="364.8899930845478" height="22" rx="3" fill="#62E08A"/>
+      <text x="646.8899930845478" y="23" class="d-wert" dominant-baseline="middle">36 Tsd.</text>
+    </g><g transform="translate(0,88)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Grüne BW</text>
+      
+      <rect x="270" y="11" width="235.45321824654866" height="22" rx="3" fill="#55534D"/>
+      <text x="517.4532182465487" y="23" class="d-wert" dominant-baseline="middle">23 Tsd.</text>
+    </g><g transform="translate(0,132)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">CDU NRW</text>
+      
+      <rect x="270" y="11" width="233.69105857644135" height="22" rx="3" fill="#55534D"/>
+      <text x="515.6910585764414" y="23" class="d-wert" dominant-baseline="middle">23 Tsd.</text>
+    </g><g transform="translate(0,176)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Grüne Berlin</text>
+      
+      <rect x="270" y="11" width="225.3208001434316" height="22" rx="3" fill="#55534D"/>
+      <text x="507.3208001434316" y="23" class="d-wert" dominant-baseline="middle">22 Tsd.</text>
+    </g><g transform="translate(0,220)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Grüne Hamburg</text>
+      
+      <rect x="270" y="11" width="157.16005429910612" height="22" rx="3" fill="#55534D"/>
+      <text x="439.16005429910615" y="23" class="d-wert" dominant-baseline="middle">15 Tsd.</text>
+    </g><g transform="translate(0,264)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Grüne Hessen</text>
+      
+      <rect x="270" y="11" width="126.9472120482545" height="22" rx="3" fill="#55534D"/>
+      <text x="408.9472120482545" y="23" class="d-wert" dominant-baseline="middle">12 Tsd.</text>
+    </g><g transform="translate(0,308)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Grüne Köln</text>
+      
+      <rect x="270" y="11" width="126.83451579028251" height="22" rx="3" fill="#55534D"/>
+      <text x="408.8345157902825" y="23" class="d-wert" dominant-baseline="middle">12 Tsd.</text>
+    </g><g transform="translate(0,352)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">FDP NRW</text>
+      
+      <rect x="270" y="11" width="125.12358169198063" height="22" rx="3" fill="#55534D"/>
+      <text x="407.12358169198063" y="23" class="d-wert" dominant-baseline="middle">12 Tsd.</text>
+    </g><g transform="translate(0,396)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Grüne SH</text>
+      
+      <rect x="270" y="11" width="112.24547294009169" height="22" rx="3" fill="#55534D"/>
+      <text x="394.2454729400917" y="23" class="d-wert" dominant-baseline="middle">11 Tsd.</text>
+    </g></svg></div>
+    <div><div class="d-titel">Eigene Accounts der Gesichter</div>
+      <svg class="diagramm" viewBox="0 -4 820 360" width="820" height="360"><g transform="translate(0,0)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Tim Achtermeyer</text>
+      
+      <rect x="270" y="11" width="400" height="22" rx="3" fill="#62E08A"/>
+      <text x="682" y="23" class="d-wert" dominant-baseline="middle">103 Tsd.</text>
+    </g><g transform="translate(0,44)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Mona Neubaur</text>
+      
+      <rect x="270" y="11" width="77.32526088764664" height="22" rx="3" fill="#55534D"/>
+      <text x="359.32526088764666" y="23" class="d-wert" dominant-baseline="middle">20 Tsd.</text>
+    </g><g transform="translate(0,88)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Oliver Krischer</text>
+      
+      <rect x="270" y="11" width="31.807499250461813" height="22" rx="3" fill="#55534D"/>
+      <text x="313.80749925046183" y="23" class="d-wert" dominant-baseline="middle">8,2 Tsd.</text>
+    </g><g transform="translate(0,132)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Verena Schäffer</text>
+      
+      <rect x="270" y="11" width="22.507422845923962" height="22" rx="3" fill="#55534D"/>
+      <text x="304.50742284592394" y="23" class="d-wert" dominant-baseline="middle">5,8 Tsd.</text>
+    </g><g transform="translate(0,176)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Josefine Paul</text>
+      
+      <rect x="270" y="11" width="17.818698801706045" height="22" rx="3" fill="#55534D"/>
+      <text x="299.81869880170603" y="23" class="d-wert" dominant-baseline="middle">4,6 Tsd.</text>
+    </g><g transform="translate(0,220)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Yazgülü Zeybek</text>
+      
+      <rect x="270" y="11" width="11.497432227240635" height="22" rx="3" fill="#55534D"/>
+      <text x="293.4974322272406" y="23" class="d-wert" dominant-baseline="middle">3,0 Tsd.</text>
+    </g><g transform="translate(0,264)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Laura Steeger-Franke</text>
+      
+      <rect x="270" y="11" width="5.814482044933605" height="22" rx="3" fill="#55534D"/>
+      <text x="287.8144820449336" y="23" class="d-wert" dominant-baseline="middle">1,5 Tsd.</text>
+    </g><g transform="translate(0,308)">
+      <text x="0" y="24" class="d-label" dominant-baseline="middle">Benjamin Limbach</text>
+      
+      <rect x="270" y="11" width="3.4391713492654525" height="22" rx="3" fill="#55534D"/>
+      <text x="285.43917134926545" y="23" class="d-wert" dominant-baseline="middle">889</text>
+    </g></svg>
+      <div class="merksatz klein">Tim Achtermeyer hat <em>dreimal so viele Follower</em> wie der Landesverband. Der stärkste Hebel für Reichweite sind deshalb Collabs, nicht der eigene Feed.</div></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">07</span></div></section>
+<section class="folie "><div class="kicker">Follower-Analyse · Reichweite jenseits der Follower</div><h2>Wer sieht die Reels?</h2>
+  <div class="kacheln k3">
+    <div class="kachel "><div class="k-wert">20 %</div><div class="k-label">Median-Reel ÷ Follower</div><div class="k-sub">ein normales Reel erreicht rund ein Fünftel der Followerzahl</div></div>
+    <div class="kachel "><div class="k-wert">16</div><div class="k-label">Reels über 35.616 Plays</div><div class="k-sub">diese Reels müssen Nicht-Follower erreicht haben</div></div>
+    <div class="kachel "><div class="k-wert">16×</div><div class="k-label">größter Hit ÷ Follower</div><div class="k-sub">Emine Gökçe: 568.909 Plays</div></div>
+  </div>
+  <div class="spalten s2">
+    <div class="karte"><div class="k-titel">Wo die Reichweite herkommt</div><svg class="diagramm" viewBox="0 -4 820 264" width="820" height="264"><g transform="translate(0,0)">
+      <text x="0" y="34" class="d-label" dominant-baseline="middle">Collab, Tim besitzt den Post</text>
+      <text x="0" y="53" class="d-sub" dominant-baseline="middle">12 Reels</text>
+      <rect x="330" y="21" width="340" height="22" rx="3" fill="#62E08A"/>
+      <text x="682" y="33" class="d-wert" dominant-baseline="middle">36 Tsd.</text>
+    </g><g transform="translate(0,64)">
+      <text x="0" y="34" class="d-label" dominant-baseline="middle">Collab, fremder Account besitzt</text>
+      <text x="0" y="53" class="d-sub" dominant-baseline="middle">7 Reels</text>
+      <rect x="330" y="21" width="165.71318934327377" height="22" rx="3" fill="#62E08A"/>
+      <text x="507.71318934327377" y="33" class="d-wert" dominant-baseline="middle">18 Tsd.</text>
+    </g><g transform="translate(0,128)">
+      <text x="0" y="34" class="d-label" dominant-baseline="middle">Eigener Post mit Collab</text>
+      <text x="0" y="53" class="d-sub" dominant-baseline="middle">69 Reels</text>
+      <rect x="330" y="21" width="70.12663085188028" height="22" rx="3" fill="#55534D"/>
+      <text x="412.1266308518803" y="33" class="d-wert" dominant-baseline="middle">7,5 Tsd.</text>
+    </g><g transform="translate(0,192)">
+      <text x="0" y="34" class="d-label" dominant-baseline="middle">Eigener Post solo</text>
+      <text x="0" y="53" class="d-sub" dominant-baseline="middle">51 Reels</text>
+      <rect x="330" y="21" width="55.58875123341738" height="22" rx="3" fill="#55534D"/>
+      <text x="397.5887512334174" y="33" class="d-wert" dominant-baseline="middle">6,0 Tsd.</text>
+    </g></svg><div class="d-titel">Plays im Median, ohne doppelt gepostete Videos</div></div>
+    <div class="randspalte"><h3>Was das heißt</h3><p>Die Follower-Kurve selbst ist öffentlich nicht abrufbar. Die Reichweite verrät aber, <b>woher die Zuschauer*innen kommen</b>.</p>
+    <p>Reels, die bei Tim (103 Tsd.) oder einem anderen Account liegen, erreichen im Median ein <b>Vielfaches</b> der Solo-Posts. Ein Teil dieser Zuschauer*innen folgt danach @gruenenrw.</p>
+    <div class="hand-notiz">Für die Follower-Kurve: Insights → Follower → Export (letzte 2 Jahre)</div></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">08</span></div></section>
+<section class="folie "><div class="kicker">Gesichter des Kanals</div><h2>Wer ist zu sehen – und was bringt es?</h2>
+  <table class="tabelle">
+    <thead><tr><th></th><th>Person</th><th>Rolle</th><th class="r">Reels</th><th class="r">Plays Median</th><th class="r">Plays Summe</th><th class="r">Interaktion</th><th class="r">eigene Follower</th></tr></thead>
+    <tbody><tr><td><img class="mini" src="bilder/thumbs/DWcDO3SiExT.jpg"/></td><td><b>Emine Gökçe</b></td><td class="leise">Kandidatin Landtag 2027</td><td class="r">1</td><td class="r b">569 Tsd.</td><td class="r">569 Tsd.</td><td class="r">8,1 %</td><td class="r leise">29 Tsd.</td></tr><tr><td><img class="mini" src="bilder/thumbs/DcgQCTbMhNi.jpg"/></td><td><b>Ricarda Lang</b></td><td class="leise">Gast · MdB</td><td class="r">3</td><td class="r b">75 Tsd.</td><td class="r">258 Tsd.</td><td class="r">2,8 %</td><td class="r leise">–</td></tr><tr class="hl"><td><img class="mini" src="bilder/thumbs/DafxyoSILhm.jpg"/></td><td><b>Tim Achtermeyer</b></td><td class="leise">Landesvorsitzender, MdL</td><td class="r">27</td><td class="r b">22 Tsd.</td><td class="r">1,01 Mio.</td><td class="r">3,7 %</td><td class="r leise">103 Tsd.</td></tr><tr><td><img class="mini" src="bilder/thumbs/Ddq_CTeosxr.jpg"/></td><td><b>Torben</b></td><td class="leise">Team-Creator, seit Aug. 2026</td><td class="r">5</td><td class="r b">9,4 Tsd.</td><td class="r">79 Tsd.</td><td class="r">3,1 %</td><td class="r leise">–</td></tr><tr><td><img class="mini" src="bilder/thumbs/DeKL-vyoFqL.jpg"/></td><td><b>Mona Neubaur</b></td><td class="leise">Stv. Ministerpräsidentin, Spitzenkandidatin 2027</td><td class="r">23</td><td class="r b">8,6 Tsd.</td><td class="r">340 Tsd.</td><td class="r">6,1 %</td><td class="r leise">20 Tsd.</td></tr><tr><td><img class="mini" src="bilder/thumbs/DdbjiV2oR0A.jpg"/></td><td><b>Julian Kamps</b></td><td class="leise">Creator, seit 15.09.2026 im Team</td><td class="r">10</td><td class="r b">6,2 Tsd.</td><td class="r">97 Tsd.</td><td class="r">5,2 %</td><td class="r leise">28 Tsd.</td></tr><tr><td><img class="mini" src="bilder/thumbs/DaS1zgGIc4m.jpg"/></td><td><b>Benjamin Limbach</b></td><td class="leise">Justizminister</td><td class="r">7</td><td class="r b">5,9 Tsd.</td><td class="r">65 Tsd.</td><td class="r">4,5 %</td><td class="r leise">889</td></tr><tr><td><img class="mini" src="bilder/thumbs/DbqmWLSIoJz.jpg"/></td><td><b>Oliver Krischer</b></td><td class="leise">Minister Umwelt &amp; Verkehr</td><td class="r">8</td><td class="r b">4,6 Tsd.</td><td class="r">49 Tsd.</td><td class="r">5,3 %</td><td class="r leise">8,2 Tsd.</td></tr><tr><td><img class="mini" src="bilder/thumbs/DUlcmMYDIMw.jpg"/></td><td><b>Verena Schäffer</b></td><td class="leise">Familienministerin (seit Jan. 2026)</td><td class="r">7</td><td class="r b">4,4 Tsd.</td><td class="r">42 Tsd.</td><td class="r">4,8 %</td><td class="r leise">5,8 Tsd.</td></tr><tr><td><img class="mini" src="bilder/thumbs/DVi80IfjO0E.jpg"/></td><td><b>Laura Steeger-Franke</b></td><td class="leise">Frauenpol. Sprecherin</td><td class="r">3</td><td class="r b">3,5 Tsd.</td><td class="r">9,5 Tsd.</td><td class="r">4,9 %</td><td class="r leise">1,5 Tsd.</td></tr><tr><td><img class="mini" src="bilder/thumbs/DaiQCNLqwe4.jpg"/></td><td><b>Yazgülü Zeybek</b></td><td class="leise">Landesvorsitzende</td><td class="r">14</td><td class="r b">2,9 Tsd.</td><td class="r">191 Tsd.</td><td class="r">4,7 %</td><td class="r leise">3,0 Tsd.</td></tr>
+    <tr class="leise"><td></td><td>ohne feste Person</td><td>Grafik, Clips, Gäste, Events</td><td class="r">36</td><td class="r">6,9 Tsd.</td><td class="r">935 Tsd.</td><td class="r">4,9 %</td><td class="r">–</td></tr></tbody>
+  </table>
+  <div class="fussnote">Ein Reel kann mehreren Personen zählen. Ohne doppelt gepostete Videos (8). Interaktion = (Likes + Kommentare) / Plays, Median.</div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">09</span></div></section>
+<section class="folie "><div class="kicker">Gesichter des Kanals · Steckbriefe</div><h2>Die Spitze: Reichweite und Treue</h2>
+    <div class="spalten s3"><div class="karte steckbrief">
+        <div class="sb-kopf"><img src="bilder/thumbs/DafxyoSILhm.jpg"/><div><div class="sb-name">Tim Achtermeyer</div><div class="leise">Landesvorsitzender, MdL</div></div></div>
+        <div class="sb-zahlen"><div><b>27</b><span>Reels</span></div><div><b>22 Tsd.</b><span>Median</span></div><div><b>3,7 %</b><span>Interaktion</span></div></div>
+        <p>Die Reichweiten-Maschine des Kanals: Gamescom, Fußball-Fankultur, Haftbefehl-Debatte, Hitzewelle. Er spricht direkt, schnell und mit Popkultur-Bezug. Wenn sein Account den Post besitzt, liegt der Median bei <b>rund 36 Tsd. Plays</b>.</p>
+        <div class="sb-ziel"><span class="mono gruen">ZIELGRUPPE</span> Junge, popkultur- und gaming-affine Menschen (18–34), viele Nicht-Follower. Auch die meisten Gegenstimmen landen bei ihm: Er erreicht Leute außerhalb der grünen Blase.</div>
+        <div class="sb-komm"><svg class="diagramm" viewBox="0 0 470 40" width="470" height="40">
+    <text x="0" y="20" class="d-label" dominant-baseline="middle"></text><rect x="1" y="11" width="125.6027397260274" height="18" fill="#62E08A" rx="2"/><text x="63.8013698630137" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">28%</text><rect x="128.60273972602738" y="11" width="120.87671232876713" height="18" fill="#3FA76A" rx="2"/><text x="189.04109589041096" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">27%</text><rect x="251.47945205479454" y="11" width="1.150684931506849" height="18" fill="#8DB8A0" rx="2"/><rect x="254.63013698630138" y="11" width="92.52054794520548" height="18" fill="#6E8FB8" rx="2"/><text x="300.8904109589041" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">21%</text><rect x="349.1506849315069" y="11" width="92.52054794520548" height="18" fill="#4E4D48" rx="2"/><text x="395.41095890410963" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">21%</text><rect x="443.67123287671234" y="11" width="15.328767123287669" height="18" fill="#F0705F" rx="2"/>
+  </svg><span class="leise">292 Kommentare in der Stichprobe</span></div>
+        <div class="sb-best"><span class="mono">STÄRKSTES REEL</span> Ready für Gamescom · <b>168 Tsd.</b></div>
+      </div><div class="karte steckbrief">
+        <div class="sb-kopf"><img src="bilder/thumbs/DeKL-vyoFqL.jpg"/><div><div class="sb-name">Mona Neubaur</div><div class="leise">Stv. Ministerpräsidentin, Spitzenkandidatin 2027</div></div></div>
+        <div class="sb-zahlen"><div><b>23</b><span>Reels</span></div><div><b>8,6 Tsd.</b><span>Median</span></div><div><b>6,1 %</b><span>Interaktion</span></div></div>
+        <p>Ministerin und Spitzenkandidatin. Ihre Reels erreichen weniger Menschen als Tims, holen aber die <b>höchste Interaktion aller Gesichter</b>. Am stärksten sind Rede-Ausschnitte und Persönliches („Warum ich Politikerin wurde“: 15,9 Tsd.), am schwächsten reine Grafik-Reels.</p>
+        <div class="sb-ziel"><span class="mono gruen">ZIELGRUPPE</span> Die Kern-Community: Mitglieder, Unterstützer*innen, eher 30+. Die Kommentare sind fast nur Herzen und Zustimmung, dazu Sachfragen zu Energie und Infrastruktur.</div>
+        <div class="sb-komm"><svg class="diagramm" viewBox="0 0 470 40" width="470" height="40">
+    <text x="0" y="20" class="d-label" dominant-baseline="middle"></text><rect x="1" y="11" width="164.4321608040201" height="18" fill="#62E08A" rx="2"/><text x="83.21608040201005" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">36%</text><rect x="167.4321608040201" y="11" width="143.62814070351757" height="18" fill="#3FA76A" rx="2"/><text x="239.2462311557789" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">32%</text><rect x="313.0603015075377" y="11" width="9.557788944723619" height="18" fill="#8DB8A0" rx="2"/><rect x="324.6180904522613" y="11" width="71.96984924623116" height="18" fill="#6E8FB8" rx="2"/><text x="360.6030150753769" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">16%</text><rect x="398.58793969849245" y="11" width="53.47738693467336" height="18" fill="#4E4D48" rx="2"/><text x="425.32663316582915" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">12%</text><rect x="454.0653266331658" y="11" width="4.93467336683417" height="18" fill="#F0705F" rx="2"/>
+  </svg><span class="leise">199 Kommentare in der Stichprobe</span></div>
+        <div class="sb-best"><span class="mono">STÄRKSTES REEL</span> Spitzenkandidatur LTW 2027 · <b>171 Tsd.</b></div>
+      </div><div class="karte steckbrief">
+        <div class="sb-kopf"><img src="bilder/thumbs/DaiQCNLqwe4.jpg"/><div><div class="sb-name">Yazgülü Zeybek</div><div class="leise">Landesvorsitzende</div></div></div>
+        <div class="sb-zahlen"><div><b>14</b><span>Reels</span></div><div><b>2,9 Tsd.</b><span>Median</span></div><div><b>4,7 %</b><span>Interaktion</span></div></div>
+        <p>Viele Reels (14), aber der niedrigste Median aller Gesichter. Die Reels sind lang (Median 72 s) und fast nur Statement oder Rede. Die Ausnahme ist <b>Albanien steht nicht zum Verkauf</b> (143 Tsd.), getragen von der albanischen Community.</p>
+        <div class="sb-ziel"><span class="mono gruen">ZIELGRUPPE</span> Communitys mit Migrationsgeschichte (Türkei, Iran, Albanien), dazu die Parteibasis. Wenn sie diese Communitys direkt anspricht, wächst die Reichweite stark.</div>
+        <div class="sb-komm"><svg class="diagramm" viewBox="0 0 470 40" width="470" height="40">
+    <text x="0" y="20" class="d-label" dominant-baseline="middle"></text><rect x="1" y="11" width="124.89655172413794" height="18" fill="#62E08A" rx="2"/><text x="63.44827586206897" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">28%</text><rect x="127.89655172413794" y="11" width="140.75862068965517" height="18" fill="#3FA76A" rx="2"/><text x="198.27586206896552" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">31%</text><rect x="270.65517241379314" y="11" width="5.931034482758621" height="18" fill="#8DB8A0" rx="2"/><rect x="278.58620689655174" y="11" width="61.44827586206897" height="18" fill="#6E8FB8" rx="2"/><text x="309.3103448275862" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">14%</text><rect x="342.0344827586207" y="11" width="116.96551724137932" height="18" fill="#4E4D48" rx="2"/><text x="400.51724137931035" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">26%</text><rect x="461" y="11" width="0" height="18" fill="#F0705F" rx="2"/>
+  </svg><span class="leise">58 Kommentare in der Stichprobe</span></div>
+        <div class="sb-best"><span class="mono">STÄRKSTES REEL</span> Albanien · <b>143 Tsd.</b></div>
+      </div></div>
+    <div class="legende klein"><span><i style="background:#62E08A"></i>Support</span><span><i style="background:#3FA76A"></i>Zustimmung</span><span><i style="background:#8DB8A0"></i>Kritik am Gegner</span><span><i style="background:#6E8FB8"></i>Frage/Diskussion</span><span><i style="background:#4E4D48"></i>Sonstiges</span><span><i style="background:#F0705F"></i>Kritik an Grünen</span></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">10</span></div></section>
+<section class="folie "><div class="kicker">Gesichter des Kanals · Steckbriefe</div><h2>Die neuen Gesichter: Creator</h2>
+    <div class="spalten s2"><div class="karte steckbrief">
+        <div class="sb-kopf"><img src="bilder/thumbs/DdbjiV2oR0A.jpg"/><div><div class="sb-name">Julian Kamps</div><div class="leise">Creator, seit 15.09.2026 im Team</div></div></div>
+        <div class="sb-zahlen"><div><b>10</b><span>Reels</span></div><div><b>6,2 Tsd.</b><span>Median</span></div><div><b>5,2 %</b><span>Interaktion</span></div></div>
+        <p>Der „9to5 boy“ aus Düsseldorf stellt sich am 15.09.2026 als neues Gesicht vor (41.576 Plays). Seitdem liefert er News-Explainer und Trends. Seine Reels werden am häufigsten kommentiert, es entstehen Diskussionen.</p>
+        <div class="sb-ziel"><span class="mono gruen">ZIELGRUPPE</span> Gen Z, 16–25: Erstwählende (in NRW 2027 erstmals ab 16!). In den Kommentaren stehen Fragen und Meinungen statt Herzen.</div>
+        <div class="sb-komm"><svg class="diagramm" viewBox="0 0 470 40" width="470" height="40">
+    <text x="0" y="20" class="d-label" dominant-baseline="middle"></text><rect x="1" y="11" width="57.14285714285714" height="18" fill="#62E08A" rx="2"/><text x="29.57142857142857" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">13%</text><rect x="60.14285714285714" y="11" width="90" height="18" fill="#3FA76A" rx="2"/><text x="105.14285714285714" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">20%</text><rect x="152.14285714285714" y="11" width="0" height="18" fill="#8DB8A0" rx="2"/><rect x="152.14285714285714" y="11" width="149.14285714285714" height="18" fill="#6E8FB8" rx="2"/><text x="226.71428571428572" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">33%</text><rect x="303.2857142857143" y="11" width="142.57142857142856" height="18" fill="#4E4D48" rx="2"/><text x="374.57142857142856" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">31%</text><rect x="447.85714285714283" y="11" width="11.142857142857142" height="18" fill="#F0705F" rx="2"/>
+  </svg><span class="leise">70 Kommentare in der Stichprobe</span></div>
+        <div class="sb-best"><span class="mono">STÄRKSTES REEL</span> Mein neuer 9to5 – Vorstellung · <b>42 Tsd.</b></div>
+      </div><div class="karte steckbrief">
+        <div class="sb-kopf"><img src="bilder/thumbs/Ddq_CTeosxr.jpg"/><div><div class="sb-name">Torben</div><div class="leise">Team-Creator, seit Aug. 2026</div></div></div>
+        <div class="sb-zahlen"><div><b>5</b><span>Reels</span></div><div><b>9,4 Tsd.</b><span>Median</span></div><div><b>3,1 %</b><span>Interaktion</span></div></div>
+        <p>Er macht Trend-Formate („Welche Zahl bin ich“, 20-€-Traumstadt) und Explainer (Rhein-Niedrigpegel, KI-Wahlomat). Den Rhein-Pegel-Explainer haben mehr Menschen gesehen als der Kanal Follower hat (41.054), und er erreicht die höchste Interaktion aller Explainer (10 %).</p>
+        <div class="sb-ziel"><span class="mono gruen">ZIELGRUPPE</span> Junge Erwachsene, eher unpolitisch-neugierig. Hoher Anteil an Fragen und eigenen Meinungen in den Kommentaren.</div>
+        <div class="sb-komm"><svg class="diagramm" viewBox="0 0 470 40" width="470" height="40">
+    <text x="0" y="20" class="d-label" dominant-baseline="middle"></text><rect x="1" y="11" width="83.5813953488372" height="18" fill="#62E08A" rx="2"/><text x="42.7906976744186" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">19%</text><rect x="86.5813953488372" y="11" width="104.97674418604652" height="18" fill="#3FA76A" rx="2"/><text x="139.06976744186045" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">23%</text><rect x="193.5581395348837" y="11" width="0" height="18" fill="#8DB8A0" rx="2"/><rect x="193.5581395348837" y="11" width="158.46511627906978" height="18" fill="#6E8FB8" rx="2"/><text x="272.7906976744186" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">35%</text><rect x="354.0232558139535" y="11" width="83.5813953488372" height="18" fill="#4E4D48" rx="2"/><text x="395.8139534883721" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">19%</text><rect x="439.6046511627907" y="11" width="19.3953488372093" height="18" fill="#F0705F" rx="2"/>
+  </svg><span class="leise">43 Kommentare in der Stichprobe</span></div>
+        <div class="sb-best"><span class="mono">STÄRKSTES REEL</span> Rhein-Niedrigpegel · <b>41 Tsd.</b></div>
+      </div></div>
+    <div class="legende klein"><span><i style="background:#62E08A"></i>Support</span><span><i style="background:#3FA76A"></i>Zustimmung</span><span><i style="background:#8DB8A0"></i>Kritik am Gegner</span><span><i style="background:#6E8FB8"></i>Frage/Diskussion</span><span><i style="background:#4E4D48"></i>Sonstiges</span><span><i style="background:#F0705F"></i>Kritik an Grünen</span></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">11</span></div></section>
+<section class="folie "><div class="kicker">Gesichter des Kanals · Steckbriefe</div><h2>Die Ministerinnen und Minister</h2>
+    <div class="spalten s3"><div class="karte steckbrief">
+        <div class="sb-kopf"><img src="bilder/thumbs/DUlcmMYDIMw.jpg"/><div><div class="sb-name">Verena Schäffer</div><div class="leise">Familienministerin (seit Jan. 2026)</div></div></div>
+        <div class="sb-zahlen"><div><b>7</b><span>Reels</span></div><div><b>4,4 Tsd.</b><span>Median</span></div><div><b>4,8 %</b><span>Interaktion</span></div></div>
+        <p>Seit Januar Ministerin für Kinder, Jugend, Familie. Sie erklärt Zahlen und Programme (106 Mio. für Kitas, 420 Mio. für Familien). Die Reels sind solide, aber lang (Median 78 s), und sie wiederholen das Zahl-Grafik-Muster.</p>
+        <div class="sb-ziel"><span class="mono gruen">ZIELGRUPPE</span> Eltern und Fachpublikum (Kita, KiBiz). In den Kommentaren stehen konkrete, teils kritische Fachfragen.</div>
+        <div class="sb-komm"><svg class="diagramm" viewBox="0 0 470 40" width="470" height="40">
+    <text x="0" y="20" class="d-label" dominant-baseline="middle"></text><rect x="1" y="11" width="188.73170731707316" height="18" fill="#62E08A" rx="2"/><text x="95.36585365853658" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">41%</text><rect x="191.73170731707316" y="11" width="98.97560975609755" height="18" fill="#3FA76A" rx="2"/><text x="241.21951219512192" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">22%</text><rect x="292.7073170731707" y="11" width="20.439024390243905" height="18" fill="#8DB8A0" rx="2"/><rect x="315.1463414634146" y="11" width="65.3170731707317" height="18" fill="#6E8FB8" rx="2"/><text x="347.80487804878044" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">15%</text><rect x="382.4634146341463" y="11" width="76.53658536585367" height="18" fill="#4E4D48" rx="2"/><text x="420.73170731707313" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">17%</text><rect x="461" y="11" width="0" height="18" fill="#F0705F" rx="2"/>
+  </svg><span class="leise">41 Kommentare in der Stichprobe</span></div>
+        <div class="sb-best"><span class="mono">STÄRKSTES REEL</span> Verena bringt NRW zusammen · <b>15 Tsd.</b></div>
+      </div><div class="karte steckbrief">
+        <div class="sb-kopf"><img src="bilder/thumbs/DaS1zgGIc4m.jpg"/><div><div class="sb-name">Benjamin Limbach</div><div class="leise">Justizminister</div></div></div>
+        <div class="sb-zahlen"><div><b>7</b><span>Reels</span></div><div><b>5,9 Tsd.</b><span>Median</span></div><div><b>4,5 %</b><span>Interaktion</span></div></div>
+        <p>Er hat ein klares Profil: Schutz von Frauen (Spanneraufnahmen, K.O.-Tropfen, Karneval). Seine Rede „Nein sagen“ kam auf 25.521 Plays mit 9,7 % Interaktion. Auf Instagram ist er selbst kaum präsent (889 Follower).</p>
+        <div class="sb-ziel"><span class="mono gruen">ZIELGRUPPE</span> Frauen und feministisch Interessierte. Die Kommentare sind fast nur Dank und Zustimmung, mit kaum Gegenwind.</div>
+        <div class="sb-komm"><svg class="diagramm" viewBox="0 0 470 40" width="470" height="40">
+    <text x="0" y="20" class="d-label" dominant-baseline="middle"></text><rect x="1" y="11" width="146.6153846153846" height="18" fill="#62E08A" rx="2"/><text x="74.3076923076923" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">32%</text><rect x="149.6153846153846" y="11" width="224.46153846153848" height="18" fill="#3FA76A" rx="2"/><text x="261.84615384615387" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">49%</text><rect x="376.0769230769231" y="11" width="0" height="18" fill="#8DB8A0" rx="2"/><rect x="376.0769230769231" y="11" width="33.38461538461539" height="18" fill="#6E8FB8" rx="2"/><rect x="411.46153846153845" y="11" width="47.53846153846154" height="18" fill="#4E4D48" rx="2"/><text x="435.2307692307692" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">11%</text><rect x="461" y="11" width="0" height="18" fill="#F0705F" rx="2"/>
+  </svg><span class="leise">65 Kommentare in der Stichprobe</span></div>
+        <div class="sb-best"><span class="mono">STÄRKSTES REEL</span> Nein sagen Rede · <b>26 Tsd.</b></div>
+      </div><div class="karte steckbrief">
+        <div class="sb-kopf"><img src="bilder/thumbs/DbqmWLSIoJz.jpg"/><div><div class="sb-name">Oliver Krischer</div><div class="leise">Minister Umwelt &amp; Verkehr</div></div></div>
+        <div class="sb-zahlen"><div><b>8</b><span>Reels</span></div><div><b>4,6 Tsd.</b><span>Median</span></div><div><b>5,3 %</b><span>Interaktion</span></div></div>
+        <p>Er steht für Verkehr und Klima: Azubi-Ticket, mehr Züge, Hambi. Die Reichweite ist niedrig, aber zwei Reels gehören zu den Interaktions-Spitzenreitern (12,3 % und 10,5 %).</p>
+        <div class="sb-ziel"><span class="mono gruen">ZIELGRUPPE</span> Pendler*innen und Klimabewegte. Viele Sachbeiträge (ÖPNV-Erfahrungen), etwas mehr Kritik als bei anderen.</div>
+        <div class="sb-komm"><svg class="diagramm" viewBox="0 0 470 40" width="470" height="40">
+    <text x="0" y="20" class="d-label" dominant-baseline="middle"></text><rect x="1" y="11" width="79.1764705882353" height="18" fill="#62E08A" rx="2"/><text x="40.58823529411765" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">18%</text><rect x="82.1764705882353" y="11" width="142.31372549019608" height="18" fill="#3FA76A" rx="2"/><text x="153.33333333333334" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">31%</text><rect x="226.49019607843138" y="11" width="16.03921568627451" height="18" fill="#8DB8A0" rx="2"/><rect x="244.52941176470588" y="11" width="115.25490196078431" height="18" fill="#6E8FB8" rx="2"/><text x="302.156862745098" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">25%</text><rect x="361.78431372549016" y="11" width="61.13725490196079" height="18" fill="#4E4D48" rx="2"/><text x="392.35294117647055" y="21" class="d-segment" text-anchor="middle" dominant-baseline="middle">14%</text><rect x="424.92156862745094" y="11" width="34.07843137254902" height="18" fill="#F0705F" rx="2"/>
+  </svg><span class="leise">51 Kommentare in der Stichprobe</span></div>
+        <div class="sb-best"><span class="mono">STÄRKSTES REEL</span> Hambi bleibt (Collab) · <b>12 Tsd.</b></div>
+      </div></div>
+    <div class="legende klein"><span><i style="background:#62E08A"></i>Support</span><span><i style="background:#3FA76A"></i>Zustimmung</span><span><i style="background:#8DB8A0"></i>Kritik am Gegner</span><span><i style="background:#6E8FB8"></i>Frage/Diskussion</span><span><i style="background:#4E4D48"></i>Sonstiges</span><span><i style="background:#F0705F"></i>Kritik an Grünen</span></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">12</span></div></section>
+<section class="folie "><div class="kicker">Die neuen Gesichter · Torben &amp; Julian</div><h2>Zwei Creator, zwei Monate</h2>
+  <div class="kacheln k4 kompakt">
+    <div class="kachel "><div class="k-wert">13</div><div class="k-label">Reels mit Torben oder Julian</div><div class="k-sub">seit 18.08.2026 · 11 von 21 Reels seit 15.09.</div></div>
+    <div class="kachel "><div class="k-wert">163 Tsd.</div><div class="k-label">Plays auf Instagram</div><div class="k-sub">+ 100 Tsd. auf TikTok (gleiche Videos)</div></div>
+    <div class="kachel gut"><div class="k-wert">2,5 / 2,5</div><div class="k-label">Kommentare je 1.000 Plays</div><div class="k-sub">Torben / Julian · Tim: 1,2</div></div>
+    <div class="kachel "><div class="k-wert">207</div><div class="k-label">Wörter pro Minute</div><div class="k-sub">Kanal ohne Creator: 168</div></div>
+  </div>
+  <div class="spalten s2b">
+    <div><div class="d-titel">Jedes Creator-Reel, Plays auf Instagram (chronologisch)</div>
+      <svg class="diagramm" viewBox="0 -4 1080 489" width="1080" height="489"><g transform="translate(0,0)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Rhein-Niedrigpegel</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">18.08.2026 · Torben · TikTok 74 Tsd.</text>
+      <rect x="400" y="8" width="523.3456802001155" height="21" rx="3" fill="#62E08A"/>
+      <text x="935.3456802001155" y="19.5" class="d-wert" dominant-baseline="middle">41 Tsd.</text>
+    </g><g transform="translate(0,37)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">KI-Wahlomaten Sachsen-Anhalt</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">01.09.2026 · Torben · TikTok 6,8 Tsd.</text>
+      <rect x="400" y="8" width="239.65749470848564" height="21" rx="3" fill="#62E08A"/>
+      <text x="651.6574947084856" y="19.5" class="d-wert" dominant-baseline="middle">19 Tsd.</text>
+    </g><g transform="translate(0,74)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Mein neuer 9to5</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">15.09.2026 · Julian · TikTok 7,0 Tsd.</text>
+      <rect x="400" y="8" width="530" height="21" rx="3" fill="#6E8FB8"/>
+      <text x="942" y="19.5" class="d-wert" dominant-baseline="middle">42 Tsd.</text>
+    </g><g transform="translate(0,111)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">POV Tanken</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">16.09.2026 · Julian · TikTok 625</text>
+      <rect x="400" y="8" width="96.2709255339619" height="21" rx="3" fill="#6E8FB8"/>
+      <text x="508.2709255339619" y="19.5" class="d-wert" dominant-baseline="middle">7,6 Tsd.</text>
+    </g><g transform="translate(0,148)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Social Media ab 13</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">17.09.2026 · Julian · TikTok 1,1 Tsd.</text>
+      <rect x="400" y="8" width="53.349288050798535" height="21" rx="3" fill="#6E8FB8"/>
+      <text x="465.3492880507985" y="19.5" class="d-wert" dominant-baseline="middle">4,2 Tsd.</text>
+    </g><g transform="translate(0,185)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Wenn du die AfD wählen willst</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">18.09.2026 · Julian · TikTok 871</text>
+      <rect x="400" y="8" width="76.04026361362324" height="21" rx="3" fill="#6E8FB8"/>
+      <text x="488.0402636136232" y="19.5" class="d-wert" dominant-baseline="middle">6,0 Tsd.</text>
+    </g><g transform="translate(0,222)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Beef in der Energiepolitik</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">22.09.2026 · Julian · TikTok 1,9 Tsd.</text>
+      <rect x="400" y="8" width="77.20030786992496" height="21" rx="3" fill="#6E8FB8"/>
+      <text x="489.2003078699249" y="19.5" class="d-wert" dominant-baseline="middle">6,1 Tsd.</text>
+    </g><g transform="translate(0,259)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Olympia in NRW?</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">24.09.2026 · Torben</text>
+      <rect x="400" y="8" width="81.92971906869347" height="21" rx="3" fill="#62E08A"/>
+      <text x="493.9297190686935" y="19.5" class="d-wert" dominant-baseline="middle">6,4 Tsd.</text>
+    </g><g transform="translate(0,296)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">K.O.-Tropfen Limbach-Initiative</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">28.09.2026 · Julian · TikTok 1,2 Tsd.</text>
+      <rect x="400" y="8" width="79.96656725033674" height="21" rx="3" fill="#6E8FB8"/>
+      <text x="491.96656725033677" y="19.5" class="d-wert" dominant-baseline="middle">6,3 Tsd.</text>
+    </g><g transform="translate(0,333)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Tankrabatt/Übergewinnsteuer</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">01.10.2026 · Julian</text>
+      <rect x="400" y="8" width="57.18635751395036" height="21" rx="3" fill="#6E8FB8"/>
+      <text x="469.1863575139504" y="19.5" class="d-wert" dominant-baseline="middle">4,5 Tsd.</text>
+    </g><g transform="translate(0,370)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">20-Euro-Traumstadt-Challenge</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">07.10.2026 · Julian + Torben · TikTok 1,9 Tsd.</text>
+      <rect x="400" y="8" width="119.5865403117183" height="21" rx="3" fill="#F2E27D"/>
+      <text x="531.5865403117183" y="19.5" class="d-wert" dominant-baseline="middle">9,4 Tsd.</text>
+    </g><g transform="translate(0,407)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Welche Zahl bin ich</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">12.10.2026 · Torben + Julian · TikTok 3,9 Tsd.</text>
+      <rect x="400" y="8" width="47.61280546469117" height="21" rx="3" fill="#F2E27D"/>
+      <text x="459.6128054646912" y="19.5" class="d-wert" dominant-baseline="middle">3,7 Tsd.</text>
+    </g><g transform="translate(0,444)">
+      <text x="0" y="20.5" class="d-label" dominant-baseline="middle">Auto-POV fliegende Autos vs Frauenrechte</text>
+      <text x="0" y="39.5" class="d-sub" dominant-baseline="middle">19.10.2026 · Julian · TikTok 1,3 Tsd.</text>
+      <rect x="400" y="8" width="98.17033865691745" height="21" rx="3" fill="#6E8FB8"/>
+      <text x="510.17033865691747" y="19.5" class="d-wert" dominant-baseline="middle">7,7 Tsd.</text>
+    </g></svg>
+      <div class="legende klein"><span><i style="background:#62E08A"></i>Torben</span><span><i style="background:#6E8FB8"></i>Julian</span><span><i style="background:#F2E27D"></i>beide</span></div></div>
+    <div class="randspalte"><h3>Lesart</h3><p>Seit Julians Start am 15.09. zeigt <b>mehr als jedes zweite Reel</b> des Kanals einen der beiden (11 von 21).</p>
+    <p>Zwei Ausreißer nach oben: <b>Torbens Rhein-Reel</b> (41 Tsd., auf TikTok sogar 74 Tsd.) und <b>Julians Vorstellung</b> (42 Tsd., über seinen eigenen Account). Dazu kommt der KI-Wahlomat (18,8 Tsd.). Der Rest liegt zwischen 3,7 und 9,4 Tsd.</p>
+    <p>Die Creator sprechen deutlich <b>schneller</b> als die Politiker*innen. Das passt zu TikTok-Sehgewohnheiten.</p>
+    <div class="hand-notiz">Reichweite kommt bisher von Ort &amp; Anlass, nicht vom Format</div></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">13</span></div></section>
+<section class="folie "><div class="kicker">Die neuen Gesichter · Vergleich seit 18.08.2026</div><h2>Weniger Reichweite, mehr Gespräch</h2>
+  <table class="tabelle">
+    <thead><tr><th>Gesicht</th><th class="r">Reels</th><th class="r">Plays Median</th><th class="r">Interaktion</th><th class="r">Kommentare je 1.000 Plays</th></tr></thead>
+    <tbody><tr class="hl"><td><b>Torben</b></td><td class="r">5</td><td class="r">9,4 Tsd.</td><td class="r">3,1 %</td><td class="r b">2,5</td></tr><tr class="hl"><td><b>Julian</b></td><td class="r">10</td><td class="r">6,2 Tsd.</td><td class="r">5,2 %</td><td class="r b">2,5</td></tr><tr><td><b>Tim Achtermeyer</b></td><td class="r">10</td><td class="r">16 Tsd.</td><td class="r">3,5 %</td><td class="r b">1,2</td></tr><tr><td><b>Mona Neubaur</b></td><td class="r">4</td><td class="r">11 Tsd.</td><td class="r">5,2 %</td><td class="r b">1,2</td></tr><tr><td><b>alle anderen</b></td><td class="r">9</td><td class="r">6,0 Tsd.</td><td class="r">4,9 %</td><td class="r b">1,9</td></tr></tbody>
+  </table>
+  <div class="spalten s2" style="margin-top:34px"><div class="regel"><div class="regel-t">Doppelt so viele Kommentare</div><p>Torben und Julian holen pro 1.000 Plays rund doppelt so viele Kommentare wie Tim und Mona. Die Leute antworten auf Fragen („Was denkt ihr?“), streiten über Social-Media-Verbote und Spritpreise. Das ist der Kanal-Teil, in dem Meinungen entstehen.</p></div><div class="regel"><div class="regel-t">Aber weniger Reichweite als Tim</div><p>Tims Reels erreichen im selben Zeitraum mehr als doppelt so viele Menschen, weil sie meist über seinen 103-Tsd.-Account laufen. Die Creator-Reels laufen fast alle nur über @gruenenrw. Dabei hat Julian selbst 28 Tsd. Follower.</p></div></div>
+  <div class="fussnote">Gleicher Zeitraum (18.08.–20.10.2026), ohne doppelt gepostete Videos. Ein Reel kann mehreren Personen zählen.</div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">14</span></div></section>
+<section class="folie "><div class="kicker">Die neuen Gesichter · Torben im Detail</div><h2>Torben: der Vor-Ort-Explainer</h2>
+    <div class="creator-streifen"><div><img src="bilder/thumbs/DcL-S2MIJWg.jpg"/><div class="cs-plays">41 Tsd.</div><div class="cs-titel">Rhein-Niedrigpegel</div><div class="leise mono">40 s · ER 10,0 % · TT 74 Tsd.</div></div><div><img src="bilder/thumbs/DcwEGKkohYl.jpg"/><div class="cs-plays">19 Tsd.</div><div class="cs-titel">KI-Wahlomaten Sachsen-Anhalt</div><div class="leise mono">47 s · ER 6,0 % · TT 6,8 Tsd.</div></div><div><img src="bilder/thumbs/DeMbZAjIMUq.jpg"/><div class="cs-plays">9,4 Tsd.</div><div class="cs-titel">20-Euro-Traumstadt-Challenge</div><div class="leise mono">85 s · ER 2,4 % · TT 1,9 Tsd.</div></div><div><img src="bilder/thumbs/Ddq_CTeosxr.jpg"/><div class="cs-plays">6,4 Tsd.</div><div class="cs-titel">Olympia in NRW?</div><div class="leise mono">35 s · ER 3,1 %</div></div><div><img src="bilder/thumbs/DeYrLpioY8U.jpg"/><div class="cs-plays">3,7 Tsd.</div><div class="cs-titel">Welche Zahl bin ich – politisch</div><div class="leise mono">105 s · ER 1,8 % · TT 3,9 Tsd.</div></div></div>
+    <div class="spalten s3"><div class="regel "><div class="regel-t">Was funktioniert</div><ul class="liste"><li><b>Ort + Beweisstück + Gegner-Zitat</b>: der tote Wels im ausgetrockneten Rhein, dazu Merz’ „nicht so im Alarmismus unterwegs“. Ergebnis: 41 Tsd. auf Instagram, 74 Tsd. auf TikTok, 10 % Interaktion.</li><li><b>Energie und Tempo</b>, viele Gesten, rund 240 Wörter pro Minute. Grafiken (KI-Wahlomat) und Green Screen machen Zahlen sichtbar.</li><li><b>Stärkstes Gesicht auf TikTok</b>: Mit dem Umfrage-Video („Manifesting 20 %“, 37 Tsd., nur auf TikTok) kommt über ein Viertel aller TikTok-Plays des Jahres aus Videos mit Torben.</li></ul></div><div class="regel rot"><div class="regel-t">Was bremst</div><ul class="liste"><li><b>Trends zu lang:</b> „Welche Zahl bin ich“ dauert 105 s, ein Trend lebt von 15–30 s (1,8 % Interaktion, 3,7 Tsd.).</li><li><b>Meinung ohne Gegner:</b> Olympia in NRW (6,4 Tsd.) ist sympathisch, aber ohne Konflikt und ohne Bild vom Ort.</li><li><b>Repost</b> des Rhein-Reels sechs Tage später: nur 4,4 Tsd. und viele Klimaleugner-Kommentare.</li></ul></div><div class="regel "><div class="regel-t">Nächste Schritte</div><ul class="liste"><li><b>Serie „Vor Ort“:</b> jede Woche ein Ort in NRW, an dem Politik sichtbar wird (Baustelle, Schulhof, Funkloch, Hitze-Hotspot).</li><li><b>Trends unter 30 s</b>, Politik nur als Pointe am Ende.</li><li><b>TikTok zuerst denken:</b> dort ist Torben das Zugpferd; Instagram als Collab über einen eigenen Account.</li></ul></div></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">15</span></div></section>
+<section class="folie "><div class="kicker">Die neuen Gesichter · Julian im Detail</div><h2>Julian: News in 30 Sekunden</h2>
+    <div class="creator-streifen"><div><img src="bilder/thumbs/DdT--maNsl9.jpg"/><div class="cs-plays">42 Tsd.</div><div class="cs-titel">Mein neuer 9to5 – Vorstellung</div><div class="leise mono">21 s · ER 3,3 % · TT 7,0 Tsd.</div></div><div><img src="bilder/thumbs/DeMbZAjIMUq.jpg"/><div class="cs-plays">9,4 Tsd.</div><div class="cs-titel">20-Euro-Traumstadt-Challenge</div><div class="leise mono">85 s · ER 2,4 % · TT 1,9 Tsd.</div></div><div><img src="bilder/thumbs/Deri3eXoj-W.jpg"/><div class="cs-plays">7,7 Tsd.</div><div class="cs-titel">Auto-POV fliegende Autos vs Frauenrechte</div><div class="leise mono">7 s · ER 5,3 % · TT 1,3 Tsd.</div></div><div><img src="bilder/thumbs/DdWBjotIbr2.jpg"/><div class="cs-plays">7,6 Tsd.</div><div class="cs-titel">POV Tanken</div><div class="leise mono">26 s · ER 5,2 % · TT 625</div></div><div><img src="bilder/thumbs/Dd1bMGjoUZ6.jpg"/><div class="cs-plays">6,3 Tsd.</div><div class="cs-titel">K.O.-Tropfen Limbach-Initiative</div><div class="leise mono">18 s · ER 7,2 % · TT 1,2 Tsd.</div></div><div><img src="bilder/thumbs/DdmA35zoGwQ.jpg"/><div class="cs-plays">6,1 Tsd.</div><div class="cs-titel">Beef in der Energiepolitik</div><div class="leise mono">41 s · ER 7,5 % · TT 1,9 Tsd.</div></div><div><img src="bilder/thumbs/DdbjiV2oR0A.jpg"/><div class="cs-plays">6,0 Tsd.</div><div class="cs-titel">Wenn du die AfD wählen willst</div><div class="leise mono">36 s · ER 6,6 % · TT 871</div></div><div><img src="bilder/thumbs/Dd9FMC4Ichk.jpg"/><div class="cs-plays">4,5 Tsd.</div><div class="cs-titel">Tankrabatt/Übergewinnsteuer</div><div class="leise mono">46 s · ER 3,1 %</div></div><div><img src="bilder/thumbs/DdZL9DjxX7o.jpg"/><div class="cs-plays">4,2 Tsd.</div><div class="cs-titel">Social Media ab 13</div><div class="leise mono">23 s · ER 5,5 % · TT 1,1 Tsd.</div></div><div><img src="bilder/thumbs/DeYrLpioY8U.jpg"/><div class="cs-plays">3,7 Tsd.</div><div class="cs-titel">Welche Zahl bin ich – politisch</div><div class="leise mono">105 s · ER 1,8 % · TT 3,9 Tsd.</div></div></div>
+    <div class="spalten s3"><div class="regel "><div class="regel-t">Was funktioniert</div><ul class="liste"><li><b>Klares, wiedererkennbares Format:</b> frontal vor heller Wand, Wort-Untertitel, Zeitungsausschnitte und Porträts als Sticker. Schnell produziert, fast täglich möglich.</li><li><b>Gespräch statt Applaus:</b> die höchste Kommentarquote des Kanals, Social Media ab 13 und Tankrabatt lösen echte Debatten aus. Interaktion bis 7,5 % (Energie-Beef).</li><li><b>Eigene Community:</b> Die Vorstellung über @juliankmps erreichte 42 Tsd. auf Instagram und 7 Tsd. auf TikTok, Kommentare wie „Topzugang“.</li></ul></div><div class="regel rot"><div class="regel-t">Was bremst</div><ul class="liste"><li><b>Reichweiten-Deckel bei 4–7 Tsd.:</b> Nur 1 von 10 Reels lief als Collab über seinen eigenen 28-Tsd.-Account, nämlich die Vorstellung mit 42 Tsd. Zwei weitere sind nur markiert.</li><li><b>Ein Ort, eine Einstellung:</b> Ohne Bildwechsel wird es nach 20 s gleichförmig (Tankrabatt: 46 s, 4,5 Tsd.).</li><li><b>Trend ohne Erklärung:</b> „Fliegende Autos vor Frauenrechten“ (7 s) wurde missverstanden („Checke, aber wie ist das gemeint?“).</li></ul></div><div class="regel "><div class="regel-t">Nächste Schritte</div><ul class="liste"><li><b>Jedes Reel als Collab mit @juliankmps</b>: Das ist der schnellste Hebel, den das Team selbst in der Hand hat.</li><li><b>Fester Serientitel</b> und raus aus der Wohnung: Das POV-Tanken-Reel an der Tankstelle lag bei 7,6 Tsd.</li><li><b>Duo mit Torben</b>: Die 20-€-Traumstadt (9,4 Tsd.) ist das stärkste Creator-Reel ohne Sonderanlass. Daraus lässt sich eine Challenge-Serie machen.</li></ul></div></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">16</span></div></section>
+<section class="folie "><div class="kicker">Natürliches Experiment</div><h2>Dasselbe Video, zweimal gepostet</h2>
+  <div class="spalten s2b">
+    <div><svg class="diagramm" viewBox="0 0 1080 600" width="1080" height="600">
+    <line x1="380" x2="380" y1="0" y2="564" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/><text x="380" y="590" class="d-achse" text-anchor="middle">100</text><line x1="573.3333333333333" x2="573.3333333333333" y1="0" y2="564" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/><text x="573.3333333333333" y="590" class="d-achse" text-anchor="middle">1,0 Tsd.</text><line x1="766.6666666666666" x2="766.6666666666666" y1="0" y2="564" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/><text x="766.6666666666666" y="590" class="d-achse" text-anchor="middle">10 Tsd.</text><line x1="960" x2="960" y1="0" y2="564" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/><text x="960" y="590" class="d-achse" text-anchor="middle">100 Tsd.</text>
+    <text x="0" y="35" class="d-label" dominant-baseline="middle">Tim · Kein Klimaschutz schadet</text>
+        <line x1="458.2678518798547" x2="777.940343414288" y1="35" y2="35" stroke="#9C9A91" stroke-width="2" stroke-dasharray="2 5"/>
+        <circle cx="458.2678518798547" cy="35" r="8" fill="#F0705F"/><circle cx="777.940343414288" cy="35" r="9" fill="#62E08A"/>
+        <text x="795.940343414288" y="35" class="d-wert" dominant-baseline="middle">×45</text><text x="0" y="105" class="d-label" dominant-baseline="middle">Tim · Braunkohle-Comeback</text>
+        <line x1="522.8309079736447" x2="783.945864424446" y1="105" y2="105" stroke="#9C9A91" stroke-width="2" stroke-dasharray="2 5"/>
+        <circle cx="522.8309079736447" cy="105" r="8" fill="#F0705F"/><circle cx="783.945864424446" cy="105" r="9" fill="#62E08A"/>
+        <text x="801.945864424446" y="105" class="d-wert" dominant-baseline="middle">×22</text><text x="0" y="175" class="d-label" dominant-baseline="middle">Tim · Borken liegt am Meer</text>
+        <line x1="651.1703467711835" x2="828.1266115219714" y1="175" y2="175" stroke="#9C9A91" stroke-width="2" stroke-dasharray="2 5"/>
+        <circle cx="651.1703467711835" cy="175" r="8" fill="#F0705F"/><circle cx="828.1266115219714" cy="175" r="9" fill="#62E08A"/>
+        <text x="846.1266115219714" y="175" class="d-wert" dominant-baseline="middle">×8</text><text x="0" y="245" class="d-label" dominant-baseline="middle">Krischer · Hambi bleibt</text>
+        <line x1="473.6313022737119" x2="778.5183201998352" y1="245" y2="245" stroke="#9C9A91" stroke-width="2" stroke-dasharray="2 5"/>
+        <circle cx="473.6313022737119" cy="245" r="8" fill="#F0705F"/><circle cx="778.5183201998352" cy="245" r="9" fill="#62E08A"/>
+        <text x="796.5183201998352" y="245" class="d-wert" dominant-baseline="middle">×38</text><text x="0" y="315" class="d-label" dominant-baseline="middle">Julian · POV Tanken</text>
+        <line x1="597.4041501346279" x2="743.0919830494024" y1="315" y2="315" stroke="#9C9A91" stroke-width="2" stroke-dasharray="2 5"/>
+        <circle cx="597.4041501346279" cy="315" r="8" fill="#F0705F"/><circle cx="743.0919830494024" cy="315" r="9" fill="#62E08A"/>
+        <text x="761.0919830494024" y="315" class="d-wert" dominant-baseline="middle">×6</text><text x="0" y="385" class="d-label" dominant-baseline="middle">Übergewinne Ölkonzerne</text>
+        <line x1="545.0483209433937" x2="723.256529806843" y1="385" y2="385" stroke="#9C9A91" stroke-width="2" stroke-dasharray="2 5"/>
+        <circle cx="545.0483209433937" cy="385" r="8" fill="#F0705F"/><circle cx="723.256529806843" cy="385" r="9" fill="#62E08A"/>
+        <text x="741.256529806843" y="385" class="d-wert" dominant-baseline="middle">×8</text><text x="0" y="455" class="d-label" dominant-baseline="middle">Rhein-Niedrigpegel</text>
+        <line x1="697.0058945069184" x2="885.2487257426285" y1="455" y2="455" stroke="#9C9A91" stroke-width="2" stroke-dasharray="2 5"/>
+        <circle cx="697.0058945069184" cy="455" r="8" fill="#F0705F"/><circle cx="885.2487257426285" cy="455" r="9" fill="#62E08A"/>
+        <text x="903.2487257426285" y="455" class="d-wert" dominant-baseline="middle">×9</text><text x="0" y="525" class="d-label" dominant-baseline="middle">Ideentour-Flyer</text>
+        <line x1="399.40497205606215" x2="682.2500658340774" y1="525" y2="525" stroke="#9C9A91" stroke-width="2" stroke-dasharray="2 5"/>
+        <circle cx="399.40497205606215" cy="525" r="8" fill="#F0705F"/><circle cx="682.2500658340774" cy="525" r="9" fill="#62E08A"/>
+        <text x="700.2500658340774" y="525" class="d-wert" dominant-baseline="middle">×29</text>
+  </svg>
+      <div class="legende"><span><i style="background:#F0705F"></i>zweite Veröffentlichung / Solo</span><span><i style="background:#62E08A"></i>erste Veröffentlichung / mit Collab</span></div></div>
+    <div class="randspalte"><h3>Der Befund</h3><p>Acht Videos wurden zweimal veröffentlicht. Die zweite Fassung erreicht nur einen Bruchteil, <b>2–17 %</b> der ersten und oft unter 1.000 Plays.</p>
+    <p>Bei den Tim-Reels lief die erste Fassung als Collab mit @tim_acht, die zweite solo. Zum Teil sehen sie wie <b>Testreels</b> aus (werden nur Nicht-Followern gezeigt).</p>
+    <p><b>Folge:</b> Ein Video, das einmal lief, ist für Instagram „verbraucht“. Ein Repost bringt keine zweite Chance, er drückt nur den Durchschnitt.</p>
+    <div class="hand-notiz">lieber 1× richtig: mit Collab, starkem Hook, gutem Timing</div></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">17</span></div></section>
+<section class="folie "><div class="kicker">Formate</div><h2>Welche Formate tragen?</h2>
+  <div class="spalten s2b">
+    <div><svg class="diagramm" viewBox="0 -4 1080 526" width="1080" height="526"><g transform="translate(0,0)">
+      <text x="0" y="39" class="d-label" dominant-baseline="middle">Event &amp; Vor-Ort</text>
+      <text x="0" y="58" class="d-sub" dominant-baseline="middle">17 Reels · Interaktion 5,0 % · Bestwert 168 Tsd.</text>
+      <rect x="420" y="26" width="510" height="22" rx="3" fill="#62E08A"/>
+      <text x="942" y="38" class="d-wert" dominant-baseline="middle">15 Tsd.</text>
+    </g><g transform="translate(0,74)">
+      <text x="0" y="39" class="d-label" dominant-baseline="middle">Rede &amp; Bühne</text>
+      <text x="0" y="58" class="d-sub" dominant-baseline="middle">17 Reels · Interaktion 6,2 % · Bestwert 47 Tsd.</text>
+      <rect x="420" y="26" width="368.08724613073855" height="22" rx="3" fill="#62E08A"/>
+      <text x="800.0872461307385" y="38" class="d-wert" dominant-baseline="middle">11 Tsd.</text>
+    </g><g transform="translate(0,148)">
+      <text x="0" y="39" class="d-label" dominant-baseline="middle">Gast &amp; Testimonial</text>
+      <text x="0" y="58" class="d-sub" dominant-baseline="middle">5 Reels · Interaktion 3,4 % · Bestwert 12 Tsd.</text>
+      <rect x="420" y="26" width="289.7538039574218" height="22" rx="3" fill="#3E9D5A"/>
+      <text x="721.7538039574217" y="38" class="d-wert" dominant-baseline="middle">8,7 Tsd.</text>
+    </g><g transform="translate(0,222)">
+      <text x="0" y="39" class="d-label" dominant-baseline="middle">Trend, Meme, Challenge</text>
+      <text x="0" y="58" class="d-sub" dominant-baseline="middle">14 Reels · Interaktion 4,6 % · Bestwert 42 Tsd.</text>
+      <rect x="420" y="26" width="243.0934500097956" height="22" rx="3" fill="#3E9D5A"/>
+      <text x="675.0934500097956" y="38" class="d-wert" dominant-baseline="middle">7,3 Tsd.</text>
+    </g><g transform="translate(0,296)">
+      <text x="0" y="39" class="d-label" dominant-baseline="middle">Talking Head / Statement</text>
+      <text x="0" y="58" class="d-sub" dominant-baseline="middle">50 Reels · Interaktion 5,1 % · Bestwert 569 Tsd.</text>
+      <rect x="420" y="26" width="218.79742702279108" height="22" rx="3" fill="#3E9D5A"/>
+      <text x="650.7974270227911" y="38" class="d-wert" dominant-baseline="middle">6,6 Tsd.</text>
+    </g><g transform="translate(0,370)">
+      <text x="0" y="39" class="d-label" dominant-baseline="middle">Explainer &amp; News-Kommentar</text>
+      <text x="0" y="58" class="d-sub" dominant-baseline="middle">15 Reels · Interaktion 6,0 % · Bestwert 41 Tsd.</text>
+      <rect x="420" y="26" width="218.2145889113825" height="22" rx="3" fill="#3E9D5A"/>
+      <text x="650.2145889113825" y="38" class="d-wert" dominant-baseline="middle">6,6 Tsd.</text>
+    </g><g transform="translate(0,444)">
+      <text x="0" y="39" class="d-label" dominant-baseline="middle">Grafik- &amp; Text-Reel</text>
+      <text x="0" y="58" class="d-sub" dominant-baseline="middle">19 Reels · Interaktion 4,2 % · Bestwert 116 Tsd.</text>
+      <rect x="420" y="26" width="198.59792333311566" height="22" rx="3" fill="#55534D"/>
+      <text x="630.5979233331157" y="38" class="d-wert" dominant-baseline="middle">6,0 Tsd.</text>
+    </g></svg>
+      <div class="d-titel">Plays im Median je Format (ab 3 Reels; TV-Clips: 2 Reels, Median 245 Tsd.)</div></div>
+    <div class="randspalte"><h3>Lesart</h3><p><b>Events vor Ort</b> (Gamescom, CSD, Demos) und <b>Reden</b> mit einem klaren Satz liegen deutlich über dem Median.</p>
+    <p><b>Statements</b> sind das häufigste Format (50 Reels). Sie streuen am stärksten: von 2 Tsd. bis 569 Tsd. Ob das Reel läuft, entscheidet die Person, nicht das Format.</p>
+    <p><b>Grafik- und Text-Reels</b> und <b>Gäste</b> liegen unter dem Median. Eine Ausnahme ist ICE/AfD-Verbot (116 Tsd.): Dort trägt ein Aufreger-Thema.</p>
+    <p>Die zwei <b>TV-Clips</b> (Merz) sind Ausreißer nach oben. Mit zwei Fällen ist das noch keine Regel.</p></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">18</span></div></section>
+<section class="folie "><div class="kicker">Formate · So sehen sie aus</div><h2>Die Formate im Bild</h2>
+  <div class="formatgalerie"><div class="fg"><div class="fg-bilder"><img src="bilder/thumbs/DbdevKEIIwl.jpg"/><img src="bilder/thumbs/DcS-3IiIC4h.jpg"/></div><div class="fg-name">TV-Clip / Zusammenschnitt</div><div class="leise mono">2 REELS · MEDIAN 245 Tsd.</div><div class="fg-text">Zusammenschnitt aus TV-Material (Merz) mit Kommentar per Text.</div></div><div class="fg"><div class="fg-bilder"><img src="bilder/thumbs/DcgQCTbMhNi.jpg"/><img src="bilder/thumbs/DUYfLvRDOI1.jpg"/></div><div class="fg-name">Event & Vor-Ort</div><div class="leise mono">17 REELS · MEDIAN 15 Tsd.</div><div class="fg-text">Vor Ort mit Handkamera: Gamescom, CSD, Demos, Ideentour.</div></div><div class="fg"><div class="fg-bilder"><img src="bilder/thumbs/DavKT_Wot6v.jpg"/><img src="bilder/thumbs/DRw6HhIDEIx.jpg"/></div><div class="fg-name">Rede & Bühne</div><div class="leise mono">17 REELS · MEDIAN 11 Tsd.</div><div class="fg-text">Ausschnitt einer Rede (Parteitag, Landtag) mit einem Kernsatz.</div></div><div class="fg"><div class="fg-bilder"><img src="bilder/thumbs/DYXG1Zxx4mi.jpg"/><img src="bilder/thumbs/DY2Gq6YonYl.jpg"/></div><div class="fg-name">Gast & Testimonial</div><div class="leise mono">5 REELS · MEDIAN 8,7 Tsd.</div><div class="fg-text">Gäste und Mitglieder erzählen: Eko Fresh, Asselborn, Ideengeber*innen.</div></div><div class="fg"><div class="fg-bilder"><img src="bilder/thumbs/DdT--maNsl9.jpg"/><img src="bilder/thumbs/DbVtYJGstLT.jpg"/></div><div class="fg-name">Trend, Meme, Challenge</div><div class="leise mono">14 REELS · MEDIAN 7,3 Tsd.</div><div class="fg-text">Trend-Audio, Meme, Challenge, POV. Das ist das schnellste Format.</div></div><div class="fg"><div class="fg-bilder"><img src="bilder/thumbs/DWcDO3SiExT.jpg"/><img src="bilder/thumbs/DeG34KjuXzq.jpg"/></div><div class="fg-name">Talking Head / Statement</div><div class="leise mono">50 REELS · MEDIAN 6,6 Tsd.</div><div class="fg-text">Eine Person spricht direkt in die Kamera, oft mit Untertiteln und einer Schlagzeile oben.</div></div><div class="fg"><div class="fg-bilder"><img src="bilder/thumbs/DcL-S2MIJWg.jpg"/><img src="bilder/thumbs/DdyIQwtoL9v.jpg"/></div><div class="fg-name">Explainer & News-Kommentar</div><div class="leise mono">15 REELS · MEDIAN 6,6 Tsd.</div><div class="fg-text">Creator oder Tim erklären eine Nachricht, mit Zeitungsausschnitt, Green Screen oder Karte.</div></div><div class="fg"><div class="fg-bilder"><img src="bilder/thumbs/DT-2gynjJpb.jpg"/><img src="bilder/thumbs/DQE27HADNmU.jpg"/></div><div class="fg-name">Grafik- & Text-Reel</div><div class="leise mono">19 REELS · MEDIAN 6,0 Tsd.</div><div class="fg-text">Text auf Bild, Animation, Kampagnenmotiv, ohne sprechende Person.</div></div></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">19</span></div></section>
+<section class="folie "><div class="kicker">Themen</div><h2>Welche Themen ziehen?</h2>
+  <div class="spalten s2b">
+    <div><svg class="diagramm" viewBox="0 -4 1080 736" width="1080" height="736"><g transform="translate(0,0)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Sport/NRW</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">3 Reels · Interaktion 2,6 %</text>
+      <rect x="330" y="17" width="600" height="22" rx="3" fill="#62E08A"/>
+      <text x="942" y="29" class="d-wert" dominant-baseline="middle">35 Tsd.</text>
+    </g><g transform="translate(0,56)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Queer</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">4 Reels · Interaktion 5,4 %</text>
+      <rect x="330" y="17" width="359.15746725390375" height="22" rx="3" fill="#62E08A"/>
+      <text x="701.1574672539037" y="29" class="d-wert" dominant-baseline="middle">21 Tsd.</text>
+    </g><g transform="translate(0,112)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Popkultur</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">7 Reels · Interaktion 3,0 %</text>
+      <rect x="330" y="17" width="262.763827718355" height="22" rx="3" fill="#62E08A"/>
+      <text x="604.7638277183551" y="29" class="d-wert" dominant-baseline="middle">15 Tsd.</text>
+    </g><g transform="translate(0,168)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">International</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">8 Reels · Interaktion 4,9 %</text>
+      <rect x="330" y="17" width="258.3795687239032" height="22" rx="3" fill="#62E08A"/>
+      <text x="600.3795687239033" y="29" class="d-wert" dominant-baseline="middle">15 Tsd.</text>
+    </g><g transform="translate(0,224)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Demokratie</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">9 Reels · Interaktion 4,2 %</text>
+      <rect x="330" y="17" width="217.18812560773324" height="22" rx="3" fill="#62E08A"/>
+      <text x="559.1881256077332" y="29" class="d-wert" dominant-baseline="middle">13 Tsd.</text>
+    </g><g transform="translate(0,280)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Wohnen/Bildung</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">6 Reels · Interaktion 6,3 %</text>
+      <rect x="330" y="17" width="179.71171995652918" height="22" rx="3" fill="#62E08A"/>
+      <text x="521.7117199565291" y="29" class="d-wert" dominant-baseline="middle">10 Tsd.</text>
+    </g><g transform="translate(0,336)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Klima</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">28 Reels · Interaktion 6,5 %</text>
+      <rect x="330" y="17" width="159.63507407195561" height="22" rx="3" fill="#3E9D5A"/>
+      <text x="501.6350740719556" y="29" class="d-wert" dominant-baseline="middle">9,3 Tsd.</text>
+    </g><g transform="translate(0,392)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Digitales</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">2 Reels · Interaktion 4,3 %</text>
+      <rect x="330" y="17" width="137.75667791568952" height="22" rx="3" fill="#3E9D5A"/>
+      <text x="479.7566779156895" y="29" class="d-wert" dominant-baseline="middle">8,0 Tsd.</text>
+    </g><g transform="translate(0,448)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Partei</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">18 Reels · Interaktion 5,3 %</text>
+      <rect x="330" y="17" width="137.4392266773437" height="22" rx="3" fill="#3E9D5A"/>
+      <text x="479.4392266773437" y="29" class="d-wert" dominant-baseline="middle">8,0 Tsd.</text>
+    </g><g transform="translate(0,504)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Gleichstellung</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">20 Reels · Interaktion 5,2 %</text>
+      <rect x="330" y="17" width="104.45003717897386" height="22" rx="3" fill="#55534D"/>
+      <text x="446.45003717897384" y="29" class="d-wert" dominant-baseline="middle">6,1 Tsd.</text>
+    </g><g transform="translate(0,560)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Wirtschaft</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">16 Reels · Interaktion 3,6 %</text>
+      <rect x="330" y="17" width="91.4173768803981" height="22" rx="3" fill="#55534D"/>
+      <text x="433.4173768803981" y="29" class="d-wert" dominant-baseline="middle">5,3 Tsd.</text>
+    </g><g transform="translate(0,616)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Mobilität</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">5 Reels · Interaktion 5,0 %</text>
+      <rect x="330" y="17" width="79.53440485042613" height="22" rx="3" fill="#55534D"/>
+      <text x="421.53440485042614" y="29" class="d-wert" dominant-baseline="middle">4,6 Tsd.</text>
+    </g><g transform="translate(0,672)">
+      <text x="0" y="30" class="d-label" dominant-baseline="middle">Soziales</text>
+      <text x="0" y="49" class="d-sub" dominant-baseline="middle">13 Reels · Interaktion 3,9 %</text>
+      <rect x="330" y="17" width="75.21020419836412" height="22" rx="3" fill="#55534D"/>
+      <text x="417.2102041983641" y="29" class="d-wert" dominant-baseline="middle">4,4 Tsd.</text>
+    </g></svg></div>
+    <div class="randspalte"><h3>Lesart</h3><p><b>Popkultur und Sport</b> (Gamescom, Olympia, Fankultur) haben einen hohen Median, aber nur 2–3 % Interaktion. Sie bringen Reichweite, aber weniger Bindung.</p>
+    <p><b>Internationales und Queer</b> (Albanien, Iran, Pride) mobilisieren Communitys, die teilen.</p>
+    <p><b>Klima</b> ist das häufigste Thema (28 Reels), liegt im Mittelfeld und hat <b>über 6 % Interaktion</b>. Das ist die Kernkompetenz, für die die Community da ist.</p>
+    <p><b>Wirtschaft, Soziales, Mobilität</b> liegen unten. Zahlen und Programme („31,2 Milliarden“) zünden nicht.</p></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">20</span></div></section>
+<section class="folie "><div class="kicker">Viral</div><h2>Die zehn stärksten Reels</h2>
+  <div class="raster10"><div class="r10"><div class="r10-rang">1</div><img src="bilder/thumbs/DWcDO3SiExT.jpg"/><div class="r10-text">
+  <div class="r10-plays">569 Tsd.</div><div class="r10-titel">Emine Gökçe: Meine Antwort</div>
+  <div class="leise mono">28.03.2026</div>
+  <div class="r10-extra">Emine · Talking Head / Statement<br/>Collab · @emi.chem postet · 49 s · ER 8,1 %</div></div></div><div class="r10"><div class="r10-rang">2</div><img src="bilder/thumbs/DbdevKEIIwl.jpg"/><div class="r10-text">
+  <div class="r10-plays">481 Tsd.</div><div class="r10-titel">Merz-Clip „Herr Strempel“</div>
+  <div class="leise mono">31.07.2026</div>
+  <div class="r10-extra">ohne Person · TV-Clip / Zusammenschnitt<br/>solo · 68 s · ER 8,1 %</div></div></div><div class="r10"><div class="r10-rang">3</div><img src="bilder/thumbs/DeG34KjuXzq.jpg"/><div class="r10-text">
+  <div class="r10-plays">171 Tsd.</div><div class="r10-titel">Spitzenkandidatur LTW 2027</div>
+  <div class="leise mono">05.10.2026</div>
+  <div class="r10-extra">Mona · Talking Head / Statement<br/>Collab · @monaneubaur postet · 25 s · ER 1,3 %</div></div></div><div class="r10"><div class="r10-rang">4</div><img src="bilder/thumbs/DcgQCTbMhNi.jpg"/><div class="r10-text">
+  <div class="r10-plays">168 Tsd.</div><div class="r10-titel">Ready für Gamescom</div>
+  <div class="leise mono">26.08.2026</div>
+  <div class="r10-extra">Ricarda + Tim · Event & Vor-Ort<br/>Collab · @tim_acht postet · 8 s · ER 2,8 %</div></div></div><div class="r10"><div class="r10-rang">5</div><img src="bilder/thumbs/DaXV6xeIhbl.jpg"/><div class="r10-text">
+  <div class="r10-plays">143 Tsd.</div><div class="r10-titel">Albanien</div>
+  <div class="leise mono">04.07.2026</div>
+  <div class="r10-extra">Yazgülü · Talking Head / Statement<br/>Collab · gruenenrw postet · 78 s · ER 5,8 %</div></div></div><div class="r10"><div class="r10-rang">6</div><img src="bilder/thumbs/DRfFF0EDA4z.jpg"/><div class="r10-text">
+  <div class="r10-plays">140 Tsd.</div><div class="r10-titel">Fankultur retten</div>
+  <div class="leise mono">25.11.2025</div>
+  <div class="r10-extra">Tim · Talking Head / Statement<br/>Collab · @tim_acht postet · 20 s · ER 2,6 %</div></div></div><div class="r10"><div class="r10-rang">7</div><img src="bilder/thumbs/DT-2gynjJpb.jpg"/><div class="r10-text">
+  <div class="r10-plays">116 Tsd.</div><div class="r10-titel">ICE AfD-Verbot</div>
+  <div class="leise mono">26.01.2026</div>
+  <div class="r10-extra">ohne Person · Grafik- & Text-Reel<br/>solo · 48 s · ER 4,5 %</div></div></div><div class="r10"><div class="r10-rang">8</div><img src="bilder/thumbs/DUYfLvRDOI1.jpg"/><div class="r10-text">
+  <div class="r10-plays">101 Tsd.</div><div class="r10-titel">Abtreibungsverbot Demo</div>
+  <div class="leise mono">05.02.2026</div>
+  <div class="r10-extra">Tim · Event & Vor-Ort<br/>Collab · @tim_acht postet · 90 s · ER 5,3 %</div></div></div><div class="r10"><div class="r10-rang">9</div><img src="bilder/thumbs/DcjLQh9IzDc.jpg"/><div class="r10-text">
+  <div class="r10-plays">75 Tsd.</div><div class="r10-titel">Baerbock auf der Gamescom</div>
+  <div class="leise mono">27.08.2026</div>
+  <div class="r10-extra">Tim + Ricarda · Event & Vor-Ort<br/>Collab · gruenenrw postet · 12 s · ER 2,8 %</div></div></div><div class="r10"><div class="r10-rang">10</div><img src="bilder/thumbs/DaVKbKXOxs4.jpg"/><div class="r10-text">
+  <div class="r10-plays">49 Tsd.</div><div class="r10-titel">Hat die SPD blau gemacht</div>
+  <div class="leise mono">03.07.2026</div>
+  <div class="r10-extra">Tim · Talking Head / Statement<br/>Collab · @tim_acht postet · 67 s · ER 9,2 %</div></div></div></div>
+  <div class="merksatz klein">Es gibt drei Wege zum Hit: eine <em>persönliche Antwort</em> auf einen Angriff (Gökçe), ein <em>Gegner-Zitat</em>, das sich selbst entlarvt (Merz), und ein <em>Popkultur-Moment mit bekannten Gesichtern</em> (Gamescom, Fankultur).</div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">21</span></div></section>
+<section class="folie "><div class="kicker">Viral · Muster</div><h2>Was die Hits gemeinsam haben</h2>
+  <div class="spalten s2"><div class="regel"><div class="regel-t">1 · Ein Gesicht mit eigener Reichweite</div><p>8 der Top 10 laufen als Collab mit einem Account, der eigene Reichweite mitbringt: Tim (103 Tsd.), Emine Gökçe (29 Tsd.), Mona Neubaur (20 Tsd.). Der Algorithmus zeigt das Reel beiden Followerschaften.</p></div><div class="regel"><div class="regel-t">2 · Konflikt statt Programm</div><p>Die Hits reagieren auf etwas: einen Angriff, ein Merz-Zitat, ein Verbot (Fankultur, Abtreibung, AfD). Programmpunkte („31,2 Mrd.“) schaffen es nie in die Top 20.</p></div><div class="regel"><div class="regel-t">3 · Der erste Satz ist der Hook</div><p>Kein Logo-Intro, keine Begrüßung. Die Top-Reels starten mitten im Satz oder mitten in der Szene. Wer in den ersten 1,5 Sekunden nicht weiß, worum es geht, wischt weiter.</p></div><div class="regel"><div class="regel-t">4 · Communitys teilen</div><p>Albanien (143 Tsd.), Iran-Rede (47 Tsd.), Pride (44 Tsd.): Diese Reels wurden in Communitys herumgereicht, die sich direkt angesprochen fühlen. Das sind Reichweiten-Inseln außerhalb der grünen Blase.</p></div></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">22</span></div></section>
+<section class="folie "><div class="kicker">Deep Dive · Platz 1 · Antwort-Video</div>
+    <div class="dd">
+      <div class="dd-links"><img class="dd-thumb" src="bilder/thumbs/DWcDO3SiExT.jpg"/>
+        <div class="dd-zahlen"><div><b>569 Tsd.</b><span>Plays</span></div><div><b>44 Tsd.</b><span>Likes</span></div><div><b>1.781</b><span>Kommentare</span></div><div><b>8,1 %</b><span>Interaktion</span></div><div><b>49 s</b><span>Länge</span></div><div><b>4,4 s</b><span>pro Einstellung</span></div></div>
+        <div class="leise mono">28.03.2026 · @emi.chem × @gruenenrw</div></div>
+      <div class="dd-rechts">
+        <h2 class="serif">Emine Gökçe: „Wir sind nicht leise, ihr hört nur nicht zu“</h2>
+        <div class="dd-hook"><span class="mono gruen">HOOK 0–3 S</span><img src="bilder/hooks/DWcDO3SiExT.jpg"/></div>
+        <div class="dd-text"><div class="spalten s2"><div><h3>Skript &amp; Bild</h3><p>49 s. Die ersten 19 s laufen als <b>Bild-im-Bild</b>: ein Politiker-Clip (vermutlich Friedrich Merz) behauptet, Grüne würden beim Frauenbild im Islam „plötzlich ganz still“. Oben steht dauerhaft „Meine Antwort auf das, was über mich gesagt wird.“ Dann folgt die Antwort, frontal im Garten, Wort-für-Wort-Untertitel mit lila Markierung: „Ich bin Muslima, ich trage Kopftuch und ich setze mich für Gleichberechtigung ein. Alles auf einmal. Verrückt, oder?“</p>
+      <h3>Zahlen</h3><p><b>569 Tsd.</b> Plays, <b>44 Tsd.</b> Likes, 1.781 Kommentare. Das ist das 16-Fache der Follower von @gruenenrw. Gepostet von @emi.chem als Collab.</p></div>
+      <div><h3>Warum es funktioniert</h3><p>Ein Angriff, eine Betroffene, eine ruhige und schlagfertige Antwort. Die Botschaft ist an eine Person gebunden, nicht an ein Programm. Die Untertitel tragen das Reel auch ohne Ton. Die Pointe („Alles auf einmal“) eignet sich zum Teilen.</p>
+      <h3>Learning</h3><p>Kandidat*innen mit eigener Geschichte sind die stärksten Absender. Antwort-Videos auf Angriffe sollten schnell kommen (24–48 h), vom Account der Person gepostet werden und @gruenenrw als Collab haben.</p></div></div></div>
+      </div>
+    </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">23</span></div></section>
+<section class="folie "><div class="kicker">Deep Dive · Platz 2 · Zusammenschnitt</div>
+    <div class="dd">
+      <div class="dd-links"><img class="dd-thumb" src="bilder/thumbs/DbdevKEIIwl.jpg"/>
+        <div class="dd-zahlen"><div><b>481 Tsd.</b><span>Plays</span></div><div><b>37 Tsd.</b><span>Likes</span></div><div><b>1.925</b><span>Kommentare</span></div><div><b>8,1 %</b><span>Interaktion</span></div><div><b>68 s</b><span>Länge</span></div><div><b>3,4 s</b><span>pro Einstellung</span></div></div>
+        <div class="leise mono">31.07.2026 · @gruenenrw</div></div>
+      <div class="dd-rechts">
+        <h2 class="serif">„Und die Welt, Herr Strempel, geht nun in der Tat morgen nicht unter“</h2>
+        <div class="dd-hook"><span class="mono gruen">HOOK 0–3 S</span><img src="bilder/hooks/DbdevKEIIwl.jpg"/></div>
+        <div class="dd-text"><div class="spalten s2"><div><h3>Skript &amp; Bild</h3><p>68 s, kein einziges eigenes Wort. Geteilter Bildschirm: <b>oben Waldbrände, Fluten, Notunterkünfte</b>, unten Talkshow-Zitate von Merz und anderen Unionspolitiker*innen („nicht so im Alarmismus unterwegs“, „pseudo-religiöse Bedeutung“, „Windkrafträder wieder abbauen“). Die Pointe steht am Schluss: „Die Welt geht nun in der Tat morgen nicht unter.“</p>
+      <h3>Zahlen</h3><p><b>481 Tsd.</b> Plays, 7,7 % Likes, <b>1.925 Kommentare</b>, die meisten im ganzen Jahr. 66-mal so viele Plays wie das Median-Reel.</p></div>
+      <div><h3>Warum es funktioniert</h3><p>Bild und Ton widersprechen sich, und das versteht man ohne Ton. Der Gegner liefert die Argumente selbst, die Grünen müssen nichts behaupten. Das erzeugt Empörung und Teilen über die eigene Blase hinaus.</p>
+      <h3>Learning</h3><p>Zusammenschnitte sind teuer in der Recherche, aber das stärkste eigene Format. Wichtig: Quellen in der Caption (hier 15 Links) schützen vor dem Vorwurf, Zitate aus dem Kontext zu reißen.</p></div></div></div>
+      </div>
+    </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">24</span></div></section>
+<section class="folie "><div class="kicker">Deep Dive · Platz 3 · Kandidatur</div>
+    <div class="dd">
+      <div class="dd-links"><img class="dd-thumb" src="bilder/thumbs/DeG34KjuXzq.jpg"/>
+        <div class="dd-zahlen"><div><b>171 Tsd.</b><span>Plays</span></div><div><b>2,2 Tsd.</b><span>Likes</span></div><div><b>27</b><span>Kommentare</span></div><div><b>1,3 %</b><span>Interaktion</span></div><div><b>25 s</b><span>Länge</span></div><div><b>1,1 s</b><span>pro Einstellung</span></div></div>
+        <div class="leise mono">05.10.2026 · @monaneubaur × @gruenenrw</div></div>
+      <div class="dd-rechts">
+        <h2 class="serif">Mona Neubaur: „Bist du dabei?“</h2>
+        <div class="dd-hook"><span class="mono gruen">HOOK 0–3 S</span><img src="bilder/hooks/DeG34KjuXzq.jpg"/></div>
+        <div class="dd-text"><div class="spalten s2"><div><h3>Skript &amp; Bild</h3><p>25 s, Ankündigung der Spitzenkandidatur. Schauplatz ist eine Imbissbude („Profi Grill“): Pommes, Gäste, eine Kreidetafel „Heute: Mona für NRW“. Der Schnitt ist sehr schnell (<b>1,1 s</b> pro Einstellung). Kernsatz: „Ich trete erneut an, um zuzuhören, anzupacken und zu liefern.“</p>
+      <h3>Zahlen</h3><p><b>171 Tsd.</b> Plays, aber nur <b>1,3 %</b> Interaktion und 27 Kommentare. Das ist der niedrigste Wert aller Top-10-Reels.</p></div>
+      <div><h3>Warum es funktioniert</h3><p>Das Setting ist nahbar statt Ministerium, das Tempo hoch, die Frage am Schluss lädt ein. Die große Reichweite bei sehr wenig Interaktion spricht aber für <b>bezahlte Ausspielung</b> oder Ausspielung an viele Nicht-Fans. Das lässt sich nur in den Insights prüfen.</p>
+      <h3>Learning</h3><p>Das Setting passt. Für Kommentare fehlt ein Anlass: eine konkrete Frage („Was soll Mona als Erstes anpacken?“) statt „Bist du dabei?“.</p></div></div></div>
+      </div>
+    </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">25</span></div></section>
+<section class="folie "><div class="kicker">Deep Dive · Platz 4 · Trend</div>
+    <div class="dd">
+      <div class="dd-links"><img class="dd-thumb" src="bilder/thumbs/DcgQCTbMhNi.jpg"/>
+        <div class="dd-zahlen"><div><b>168 Tsd.</b><span>Plays</span></div><div><b>4,5 Tsd.</b><span>Likes</span></div><div><b>158</b><span>Kommentare</span></div><div><b>2,8 %</b><span>Interaktion</span></div><div><b>8 s</b><span>Länge</span></div><div><b>2,8 s</b><span>pro Einstellung</span></div></div>
+        <div class="leise mono">26.08.2026 · @tim_acht × @gruenenrw</div></div>
+      <div class="dd-rechts">
+        <h2 class="serif">Ready für die Gamescom</h2>
+        <div class="dd-hook"><span class="mono gruen">HOOK 0–3 S</span><img src="bilder/hooks/DcgQCTbMhNi.jpg"/></div>
+        <div class="dd-text"><div class="spalten s2"><div><h3>Skript &amp; Bild</h3><p><b>8,5 s</b>, Trend-Audio („Mo’ Money Mo’ Haters“), nur ein Text-Overlay: „Ready für Gamescom“. Tim und Ricarda Lang machen den Get-ready-Übergang, danach sieht man sie kurz an der Konsole. Es gibt keine Botschaft und kein Programm.</p>
+      <h3>Zahlen</h3><p><b>168 Tsd.</b> Plays, 2,7 % Interaktion. Gepostet von <b>@tim_acht</b> mit @gruenenrw und Ricarda Lang. Zusammen mit den anderen Gamescom-Reels kommt der Kanal auf knapp 290 Tsd. Plays in einer Woche.</p></div>
+      <div><h3>Warum es funktioniert</h3><p>Das Reel ist kurz und wird deshalb oft wiederholt angesehen. Es nutzt einen Trend-Sound, zeigt zwei bekannte Gesichter und spielt an einem Ort, an dem die Zielgruppe ohnehin ist. Die Gamescom ist ein Rahmen, den Gaming-Accounts weitertragen.</p>
+      <h3>Learning</h3><p>Popkultur-Events sind Reichweiten-Booster für die Marke, nicht für Inhalte. Darauf sollte ein inhaltliches Reel folgen (z. B. Games-Standort NRW), solange die Aufmerksamkeit da ist.</p></div></div></div>
+      </div>
+    </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">26</span></div></section>
+<section class="folie "><div class="kicker">Deep Dive · Platz 5 · Community</div>
+    <div class="dd">
+      <div class="dd-links"><img class="dd-thumb" src="bilder/thumbs/DaXV6xeIhbl.jpg"/>
+        <div class="dd-zahlen"><div><b>143 Tsd.</b><span>Plays</span></div><div><b>8,1 Tsd.</b><span>Likes</span></div><div><b>197</b><span>Kommentare</span></div><div><b>5,8 %</b><span>Interaktion</span></div><div><b>78 s</b><span>Länge</span></div><div><b>1,8 s</b><span>pro Einstellung</span></div></div>
+        <div class="leise mono">04.07.2026 · @gruenenrw</div></div>
+      <div class="dd-rechts">
+        <h2 class="serif">„Albanien steht nicht zum Verkauf“</h2>
+        <div class="dd-hook"><span class="mono gruen">HOOK 0–3 S</span><img src="bilder/hooks/DaXV6xeIhbl.jpg"/></div>
+        <div class="dd-text"><div class="spalten s2"><div><h3>Skript &amp; Bild</h3><p>78 s, <b>Staffel-Format</b>: Yazgülü Zeybek und vier Stimmen aus der albanischen Community sprechen abwechselnd Satz für Satz, alle mit Handmikro am selben Ort. Dazwischen Protestbilder, Flamingos, die Lagune und ein Banner „Albania is not for sale“. Schluss: „Wir in NRW haben die größte albanische Community in Deutschland … Bleibt stark, kämpft weiter.“</p>
+      <h3>Zahlen</h3><p><b>143 Tsd.</b> Plays, 5,7 % Interaktion. Das ist das 50-Fache von Yazgülüs Median. Sieben Accounts sind markiert.</p></div>
+      <div><h3>Warum es funktioniert</h3><p>Eine Community sieht sich gemeint und teilt das Reel in eigene Netzwerke. Durch viele Gesichter und viele Markierungen startet das Reel mit vielen Followerschaften. Der Schnitt ist schnell (1,8 s pro Einstellung) trotz 78 s Länge.</p>
+      <h3>Learning</h3><p>Das ist die Blaupause für Yazgülü und für Diaspora-Themen: mit der Community statt über sie sprechen und alle Beteiligten als Collab markieren.</p></div></div></div>
+      </div>
+    </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">27</span></div></section>
+<section class="folie "><div class="kicker">Deep Dive · Platz 6 · Kampagne</div>
+    <div class="dd">
+      <div class="dd-links"><img class="dd-thumb" src="bilder/thumbs/DRfFF0EDA4z.jpg"/>
+        <div class="dd-zahlen"><div><b>140 Tsd.</b><span>Plays</span></div><div><b>3,5 Tsd.</b><span>Likes</span></div><div><b>141</b><span>Kommentare</span></div><div><b>2,6 %</b><span>Interaktion</span></div><div><b>20 s</b><span>Länge</span></div><div><b>19,6 s</b><span>pro Einstellung</span></div></div>
+        <div class="leise mono">25.11.2025 · @tim_acht × @gruenenrw</div></div>
+      <div class="dd-rechts">
+        <h2 class="serif">Tim: „Nichts mehr mit Karte abgeben an Onkel Heinz“</h2>
+        <div class="dd-hook"><span class="mono gruen">HOOK 0–3 S</span><img src="bilder/hooks/DRfFF0EDA4z.jpg"/></div>
+        <div class="dd-text"><div class="spalten s2"><div><h3>Skript &amp; Bild</h3><p><b>19,7 s, ein Ort, ein Take</b>: Tim im petrolgrünen Anzug auf dem Sofa, Laptop auf dem Schoß. Statt Schnitten gibt es Zoom-Sprünge (nah → halbnah), die Schlagzeile „Rettet die Fankultur!“ und Wort-Untertitel. Drei Sätze: das Problem (personalisierte Dauerkarte), ein Bild aus dem Alltag („Karte abgeben an Onkel Heinz“), dann der Aufruf (Link in Bio, unterschreiben).</p>
+      <h3>Zahlen</h3><p><b>140 Tsd.</b> Plays, 2,5 % Interaktion, gepostet von @tim_acht. Das Thema betrifft Fans aller Vereine, nicht nur Grünen-Wähler*innen.</p></div>
+      <div><h3>Warum es funktioniert</h3><p>Es spricht ein konkretes Ärgernis einer großen Gruppe an, mit einem Gegner (Bundesinnenminister) und einer Handlung (Petition). „Onkel Heinz“ macht die Regel greifbar. Die Kürze sorgt für Wiederholungen.</p>
+      <h3>Learning</h3><p>Das ist die Vorlage für Mitmach-Reels: unter 20 s, Problem → Alltagsbild → Aufruf. Gut übertragbar auf Deutschlandticket, Mieten, Kita-Beiträge.</p></div></div></div>
+      </div>
+    </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">28</span></div></section>
+<section class="folie "><div class="kicker">Schlecht gelaufen</div><h2>Die zehn schwächsten Reels</h2>
+  <div class="raster10 flop"><div class="r10"><img src="bilder/thumbs/DYkMTDhMo_u.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">1,9 Tsd.</div><div class="r10-titel">Burak Yilmaz Statement</div>
+  <div class="leise mono">20.05.2026</div>
+  <div class="r10-extra">ohne Person · Gast & Testimonial<br/>solo · 23 s · ER 3,4 %</div></div></div><div class="r10"><img src="bilder/thumbs/DVMG3t8DJnw.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,1 Tsd.</div><div class="r10-titel">GEG-Reform</div>
+  <div class="leise mono">25.02.2026</div>
+  <div class="r10-extra">Yazgülü · Talking Head / Statement<br/>Collab · gruenenrw postet · 69 s · ER 4,4 %</div></div></div><div class="r10"><img src="bilder/thumbs/Dd_XXVRIAMf.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,1 Tsd.</div><div class="r10-titel">Tankrabatt Falafel-Meme</div>
+  <div class="leise mono">02.10.2026</div>
+  <div class="r10-extra">ohne Person · Trend, Meme, Challenge<br/>solo · 7 s · ER 0,9 %</div></div></div><div class="r10"><img src="bilder/thumbs/DU3a43YiNQP.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,2 Tsd.</div><div class="r10-titel">Herr Dobrindt absurd</div>
+  <div class="leise mono">17.02.2026</div>
+  <div class="r10-extra">Yazgülü · Talking Head / Statement<br/>Collab · @yazgulu.zeybek postet · 89 s · ER 5,8 %</div></div></div><div class="r10"><img src="bilder/thumbs/DVghFoUDAMe.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,2 Tsd.</div><div class="r10-titel">Teilzeit Care</div>
+  <div class="leise mono">05.03.2026</div>
+  <div class="r10-extra">Yazgülü · Talking Head / Statement<br/>Collab · gruenenrw postet · 72 s · ER 2,6 %</div></div></div><div class="r10"><img src="bilder/thumbs/DSKuYT4CAX_.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,3 Tsd.</div><div class="r10-titel">Greentech</div>
+  <div class="leise mono">12.12.2025</div>
+  <div class="r10-extra">Mona + Krischer · Grafik- & Text-Reel<br/>Collab · gruenenrw postet · 85 s · ER 4,2 %</div></div></div><div class="r10"><img src="bilder/thumbs/DVq4F-pDMhA.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,3 Tsd.</div><div class="r10-titel">Politik weiblich</div>
+  <div class="leise mono">09.03.2026</div>
+  <div class="r10-extra">Laura · Talking Head / Statement<br/>Collab · gruenenrw postet · 27 s · ER 3,5 %</div></div></div><div class="r10"><img src="bilder/thumbs/DRCoPFbjO_f.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,4 Tsd.</div><div class="r10-titel">Astronaut*innen</div>
+  <div class="leise mono">14.11.2025</div>
+  <div class="r10-extra">Yazgülü · Talking Head / Statement<br/>Collab · gruenenrw postet · 60 s · ER 3,1 %</div></div></div><div class="r10"><img src="bilder/thumbs/DVd0oC1DCKd.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,4 Tsd.</div><div class="r10-titel">Frauen schützen Internet</div>
+  <div class="leise mono">04.03.2026</div>
+  <div class="r10-extra">Limbach · Talking Head / Statement<br/>Collab · gruenenrw postet · 40 s · ER 3,6 %</div></div></div><div class="r10"><img src="bilder/thumbs/DctUU-ioLe0.jpg"/><div class="r10-text">
+  <div class="r10-plays rot">2,4 Tsd.</div><div class="r10-titel">Gamescom Starter-Center</div>
+  <div class="leise mono">31.08.2026</div>
+  <div class="r10-extra">Mona · Event & Vor-Ort<br/>solo · 85 s · ER 5,0 %</div></div></div></div>
+  <div class="fussnote">Ohne die 8 doppelt geposteten Videos (siehe Folie „Dasselbe Video, zweimal gepostet“) – die wären sonst die Plätze 1–8.</div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">29</span></div></section>
+<section class="folie "><div class="kicker">Deep Dive · Flop im Detail</div>
+    <div class="dd">
+      <div class="dd-links"><img class="dd-thumb" src="bilder/thumbs/DVMG3t8DJnw.jpg"/>
+        <div class="dd-zahlen"><div><b>2,1 Tsd.</b><span>Plays</span></div><div><b>90</b><span>Likes</span></div><div><b>1</b><span>Kommentare</span></div><div><b>4,4 %</b><span>Interaktion</span></div><div><b>69 s</b><span>Länge</span></div><div><b>5,8 s</b><span>pro Einstellung</span></div></div>
+        <div class="leise mono">25.02.2026 · @gruenenrw</div></div>
+      <div class="dd-rechts">
+        <h2 class="serif">„Stoppt die Kostenfalle“ – warum 2.057 Plays?</h2>
+        <div class="dd-hook"><span class="mono gruen">HOOK 0–3 S</span><img src="bilder/hooks/DVMG3t8DJnw.jpg"/></div>
+        <div class="dd-text"><div class="spalten s2"><div><h3>Skript &amp; Bild</h3><p>69 s, Yazgülü Zeybek frontal vor grüner Wand, ein Ort, nur Zoom-Sprünge und ein kurz eingeblendeter Zeitungsausschnitt (Ø <b>5,8 s</b> pro Einstellung). Der Einstieg „Die Gasspeicher sind quasi leer“ ist eigentlich stark. Danach folgen eine Minute Fachsprache (GEG-Reform, fossile Abhängigkeit, Effizienz, Verlässlichkeit) und ein Petitions-Aufruf nur in der Caption.</p>
+      <h3>Zahlen</h3><p><b>2.057</b> Plays, 90 Likes, <b>1 Kommentar</b>. Das ist rund ein Siebzigstel des Albanien-Reels derselben Person.</p></div>
+      <div><h3>Warum es untergeht</h3><p>Es ist kein Mensch betroffen, es gibt kein Bild für die „Kostenfalle“ und kein Alltagsbeispiel wie „Onkel Heinz“ beim Fankultur-Reel. Das Kürzel <b>GEG</b> versteht außerhalb der Fachwelt kaum jemand. Ein Collab-Partner fehlt.</p>
+      <h3>So wäre es besser</h3><p>Unter 30 s, mit einer Mieterin oder einem Handwerker vor der Gasheizung: „Das wird für dich jedes Jahr teurer“. Dann ein Satz zur Forderung und der Petitionslink als Collab mit einem Verbraucher- oder Handwerks-Account.</p></div></div></div>
+      </div>
+    </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">30</span></div></section>
+<section class="folie "><div class="kicker">Schlecht gelaufen · Muster</div><h2>Warum Reels untergehen</h2>
+  <div class="spalten s2"><div class="regel rot"><div class="regel-t">Doppelt gepostet</div><p>Die sechs schwächsten Reels des Jahres sind Wiederholungen (126 bis 1.332 Plays). Instagram spielt ein bereits gelaufenes Video kaum noch aus.</p></div><div class="regel rot"><div class="regel-t">Solo statt Collab</div><p>Dieselben Personen erreichen ohne Collab-Partner nur einen Bruchteil. Yazgülü Zeybeks Solo-Statements liegen um 2–3 Tsd., mit der Albanien-Community bei 143 Tsd.</p></div><div class="regel rot"><div class="regel-t">Lang, ruhig, erklärend</div><p>Statements über 60 s ohne Bildwechsel und mit Programmsprache (GEG-Reform, Greentech, „Frauen schützen auch im Internet“) bleiben bei 2–3 Tsd.</p></div><div class="regel rot"><div class="regel-t">Meme ohne Absender</div><p>Ein Meme ohne Gesicht (Tankrabatt-Falafel: 2.128 Plays, 0,9 % Interaktion) wird nicht als Grüne-NRW-Inhalt erkannt und kaum geteilt.</p></div></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">31</span></div></section>
+<section class="folie "><div class="kicker">Machart & Timing</div><h2>Länge, Schnitttempo, Wochentag</h2>
+  <div class="spalten s3">
+    <div><div class="d-titel">Länge → Plays im Median</div><svg class="diagramm" viewBox="0 -4 560 338" width="560" height="338"><g transform="translate(0,0)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">unter 20 s</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">19 Reels</text>
+      <rect x="170" y="22" width="169.850939727803" height="22" rx="3" fill="#62E08A"/>
+      <text x="351.850939727803" y="34" class="d-wert" dominant-baseline="middle">6,6 Tsd.</text>
+    </g><g transform="translate(0,66)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">20–40 s</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">32 Reels</text>
+      <rect x="170" y="22" width="280" height="22" rx="3" fill="#62E08A"/>
+      <text x="462" y="34" class="d-wert" dominant-baseline="middle">11 Tsd.</text>
+    </g><g transform="translate(0,132)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">40–60 s</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">31 Reels</text>
+      <rect x="170" y="22" width="222.9163966299417" height="22" rx="3" fill="#62E08A"/>
+      <text x="404.9163966299417" y="34" class="d-wert" dominant-baseline="middle">8,6 Tsd.</text>
+    </g><g transform="translate(0,198)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">60–90 s</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">50 Reels</text>
+      <rect x="170" y="22" width="206.68826960466623" height="22" rx="3" fill="#62E08A"/>
+      <text x="388.68826960466623" y="34" class="d-wert" dominant-baseline="middle">8,0 Tsd.</text>
+    </g><g transform="translate(0,264)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">über 90 s</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">7 Reels</text>
+      <rect x="170" y="22" width="177.5761503564485" height="22" rx="3" fill="#62E08A"/>
+      <text x="359.57615035644847" y="34" class="d-wert" dominant-baseline="middle">6,9 Tsd.</text>
+    </g></svg></div>
+    <div><div class="d-titel">Sekunden pro Einstellung → Plays</div><svg class="diagramm" viewBox="0 -4 560 272" width="560" height="272"><g transform="translate(0,0)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">sehr schnell (&lt; 2 s)</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">23 Reels</text>
+      <rect x="230" y="22" width="174.28150331613853" height="22" rx="3" fill="#62E08A"/>
+      <text x="416.2815033161385" y="34" class="d-wert" dominant-baseline="middle">7,5 Tsd.</text>
+    </g><g transform="translate(0,66)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">schnell (2–4 s)</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">59 Reels</text>
+      <rect x="230" y="22" width="208.18823034003577" height="22" rx="3" fill="#62E08A"/>
+      <text x="450.1882303400358" y="34" class="d-wert" dominant-baseline="middle">9,0 Tsd.</text>
+    </g><g transform="translate(0,132)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">ruhig (4–8 s)</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">41 Reels</text>
+      <rect x="230" y="22" width="138.10506369091485" height="22" rx="3" fill="#62E08A"/>
+      <text x="380.10506369091485" y="34" class="d-wert" dominant-baseline="middle">6,0 Tsd.</text>
+    </g><g transform="translate(0,198)">
+      <text x="0" y="35" class="d-label" dominant-baseline="middle">sehr ruhig (&gt; 8 s)</text>
+      <text x="0" y="54" class="d-sub" dominant-baseline="middle">16 Reels</text>
+      <rect x="230" y="22" width="220" height="22" rx="3" fill="#62E08A"/>
+      <text x="462" y="34" class="d-wert" dominant-baseline="middle">9,5 Tsd.</text>
+    </g></svg></div>
+    <div><div class="d-titel">Wochentag → Plays im Median</div><svg class="diagramm" viewBox="0 -4 560 358" width="560" height="358"><g transform="translate(0,0)">
+      <text x="0" y="27" class="d-label" dominant-baseline="middle">Mo</text>
+      <text x="0" y="46" class="d-sub" dominant-baseline="middle">19 Reels</text>
+      <rect x="110" y="14" width="188.59531117351273" height="22" rx="3" fill="#62E08A"/>
+      <text x="310.59531117351275" y="26" class="d-wert" dominant-baseline="middle">8,5 Tsd.</text>
+    </g><g transform="translate(0,50)">
+      <text x="0" y="27" class="d-label" dominant-baseline="middle">Di</text>
+      <text x="0" y="46" class="d-sub" dominant-baseline="middle">27 Reels</text>
+      <rect x="110" y="14" width="281.0278848037615" height="22" rx="3" fill="#62E08A"/>
+      <text x="403.0278848037615" y="26" class="d-wert" dominant-baseline="middle">13 Tsd.</text>
+    </g><g transform="translate(0,100)">
+      <text x="0" y="27" class="d-label" dominant-baseline="middle">Mi</text>
+      <text x="0" y="46" class="d-sub" dominant-baseline="middle">31 Reels</text>
+      <rect x="110" y="14" width="131.02200744465486" height="22" rx="3" fill="#62E08A"/>
+      <text x="253.02200744465486" y="26" class="d-wert" dominant-baseline="middle">5,9 Tsd.</text>
+    </g><g transform="translate(0,150)">
+      <text x="0" y="27" class="d-label" dominant-baseline="middle">Do</text>
+      <text x="0" y="46" class="d-sub" dominant-baseline="middle">21 Reels</text>
+      <rect x="110" y="14" width="132.33200548553515" height="22" rx="3" fill="#62E08A"/>
+      <text x="254.33200548553515" y="26" class="d-wert" dominant-baseline="middle">6,0 Tsd.</text>
+    </g><g transform="translate(0,200)">
+      <text x="0" y="27" class="d-label" dominant-baseline="middle">Fr</text>
+      <text x="0" y="46" class="d-sub" dominant-baseline="middle">28 Reels</text>
+      <rect x="110" y="14" width="148.05198197609874" height="22" rx="3" fill="#62E08A"/>
+      <text x="270.0519819760988" y="26" class="d-wert" dominant-baseline="middle">6,7 Tsd.</text>
+    </g><g transform="translate(0,250)">
+      <text x="0" y="27" class="d-label" dominant-baseline="middle">Sa</text>
+      <text x="0" y="46" class="d-sub" dominant-baseline="middle">7 Reels</text>
+      <rect x="110" y="14" width="340" height="22" rx="3" fill="#55534D"/>
+      <text x="462" y="26" class="d-wert" dominant-baseline="middle">15 Tsd.</text>
+    </g><g transform="translate(0,300)">
+      <text x="0" y="27" class="d-label" dominant-baseline="middle">So</text>
+      <text x="0" y="46" class="d-sub" dominant-baseline="middle">6 Reels</text>
+      <rect x="110" y="14" width="227.4733886240449" height="22" rx="3" fill="#55534D"/>
+      <text x="349.4733886240449" y="26" class="d-wert" dominant-baseline="middle">10 Tsd.</text>
+    </g></svg></div>
+  </div>
+  <div class="merksatz klein">Länge und Schnitttempo sind fast egal (Median 47 s, 2–4 s pro Einstellung leicht vorn). Entscheidend ist, <em>wer</em> spricht und <em>was</em> passiert. Gepostet wird meist <em>nachmittags (16–19 Uhr)</em> und kaum am Wochenende. Dabei liegen die wenigen Samstags- und Sonntags-Reels über dem Median.</div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">32</span></div></section>
+<section class="folie "><div class="kicker">Machart · Kleine Hebel</div><h2>Hook &amp; Caption: Was macht einen Unterschied?</h2>
+  <table class="tabelle">
+    <thead><tr><th>Merkmal</th><th class="r">Reels mit</th><th class="r">Plays mit</th><th class="r">Plays ohne</th><th class="r">Kommentare je 1.000 Plays mit</th><th class="r">ohne</th></tr></thead>
+    <tbody><tr><td><b>Du-Ansprache in den ersten 3 s</b><br/><span class="leise">„Du gehst …“, „Hast du …“</span></td><td class="r">20</td><td class="r ">7,5 Tsd.</td><td class="r leise">7,7 Tsd.</td><td class="r ">1,4</td><td class="r leise">1,6</td></tr><tr><td><b>Frage in den ersten 3 s</b><br/><span class="leise">Hook endet mit „?“</span></td><td class="r">20</td><td class="r ">8,8 Tsd.</td><td class="r leise">7,5 Tsd.</td><td class="r ">1,4</td><td class="r leise">1,5</td></tr><tr><td><b>Kommentar-Aufruf in der Caption</b><br/><span class="leise">„Schreibt’s in die Kommentare 👇“</span></td><td class="r">12</td><td class="r rot">5,3 Tsd.</td><td class="r leise">8,7 Tsd.</td><td class="r b">2,1</td><td class="r leise">1,4</td></tr><tr><td><b>Frage in der ersten Caption-Zeile</b></td><td class="r">39</td><td class="r ">8,6 Tsd.</td><td class="r leise">7,5 Tsd.</td><td class="r ">1,7</td><td class="r leise">1,4</td></tr><tr><td><b>Link in Bio / Petition</b><br/><span class="leise">„Unterschreib …“</span></td><td class="r">24</td><td class="r ">7,5 Tsd.</td><td class="r leise">8,4 Tsd.</td><td class="r ">1,4</td><td class="r leise">1,6</td></tr><tr><td><b>Fremd-Musik / Trend-Audio</b><br/><span class="leise">statt Originalton</span></td><td class="r">10</td><td class="r rot">6,3 Tsd.</td><td class="r leise">8,5 Tsd.</td><td class="r rot">1,2</td><td class="r leise">1,6</td></tr></tbody>
+  </table>
+  <div class="merksatz klein">Ein ausdrücklicher <em>Kommentar-Aufruf</em> bringt rund 50 % mehr Kommentare, aber nicht mehr Plays. Du-Ansprache, Frage-Hook und Trend-Audio sind <em>für sich allein</em> keine Hebel: Es zählt, wer spricht und worüber.</div>
+  <div class="fussnote">Mediane, ohne doppelt gepostete Videos. Hook = transkribierte Wörter der ersten 3 s (nur Reels mit Sprache). Kleine Gruppen: Tendenzen, keine Beweise.</div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">33</span></div></section>
+<section class="folie "><div class="kicker">Zielgruppen-Analyse · Kommentare</div><h2>Wer kommentiert – und wie?</h2>
+  <div class="spalten s2b">
+    <div><div class="d-titel">1.108 Kommentare (Stichprobe: neueste je Reel), grob eingeordnet</div>
+      <svg class="diagramm" viewBox="0 0 1080 378" width="1080" height="378">
+    <text x="0" y="27" class="d-label" dominant-baseline="middle">alle Reels</text><rect x="301" y="11" width="238.45126353790613" height="32" fill="#62E08A" rx="2"/><text x="420.22563176895306" y="28" class="d-segment" text-anchor="middle" dominant-baseline="middle">31%</text><rect x="541.4512635379061" y="11" width="208.56859205776172" height="32" fill="#3FA76A" rx="2"/><text x="645.735559566787" y="28" class="d-segment" text-anchor="middle" dominant-baseline="middle">27%</text><rect x="752.0198555956679" y="11" width="11.898916967509026" height="32" fill="#8DB8A0" rx="2"/><rect x="765.918772563177" y="11" width="144.6335740072202" height="32" fill="#6E8FB8" rx="2"/><text x="838.2355595667871" y="28" class="d-segment" text-anchor="middle" dominant-baseline="middle">19%</text><rect x="912.5523465703972" y="11" width="136.2942238267148" height="32" fill="#4E4D48" rx="2"/><text x="980.6994584837546" y="28" class="d-segment" text-anchor="middle" dominant-baseline="middle">18%</text><rect x="1050.846570397112" y="11" width="18.15342960288809" height="32" fill="#F0705F" rx="2"/><text x="0" y="81" class="d-label" dominant-baseline="middle">Tim Achtermeyer</text><rect x="301" y="65" width="211.5958904109589" height="32" fill="#62E08A" rx="2"/><text x="406.79794520547944" y="82" class="d-segment" text-anchor="middle" dominant-baseline="middle">28%</text><rect x="514.5958904109589" y="65" width="203.68493150684932" height="32" fill="#3FA76A" rx="2"/><text x="616.4383561643835" y="82" class="d-segment" text-anchor="middle" dominant-baseline="middle">27%</text><rect x="720.2808219178082" y="65" width="3.2739726027397253" height="32" fill="#8DB8A0" rx="2"/><rect x="725.554794520548" y="65" width="156.21917808219177" height="32" fill="#6E8FB8" rx="2"/><text x="803.6643835616438" y="82" class="d-segment" text-anchor="middle" dominant-baseline="middle">21%</text><rect x="883.7739726027397" y="65" width="156.21917808219177" height="32" fill="#4E4D48" rx="2"/><text x="961.8835616438356" y="82" class="d-segment" text-anchor="middle" dominant-baseline="middle">21%</text><rect x="1041.9931506849316" y="65" width="27.006849315068493" height="32" fill="#F0705F" rx="2"/><text x="0" y="135" class="d-label" dominant-baseline="middle">Mona Neubaur</text><rect x="301" y="119" width="276.5929648241206" height="32" fill="#62E08A" rx="2"/><text x="439.2964824120603" y="136" class="d-segment" text-anchor="middle" dominant-baseline="middle">36%</text><rect x="579.5929648241206" y="119" width="241.76884422110552" height="32" fill="#3FA76A" rx="2"/><text x="700.4773869346734" y="136" class="d-segment" text-anchor="middle" dominant-baseline="middle">32%</text><rect x="823.3618090452261" y="119" width="17.34673366834171" height="32" fill="#8DB8A0" rx="2"/><rect x="842.7085427135678" y="119" width="121.81909547738694" height="32" fill="#6E8FB8" rx="2"/><text x="903.6180904522613" y="136" class="d-segment" text-anchor="middle" dominant-baseline="middle">16%</text><rect x="966.5276381909547" y="119" width="90.8643216080402" height="32" fill="#4E4D48" rx="2"/><text x="1011.9597989949748" y="136" class="d-segment" text-anchor="middle" dominant-baseline="middle">12%</text><rect x="1059.3919597989948" y="119" width="9.608040201005025" height="32" fill="#F0705F" rx="2"/><text x="0" y="189" class="d-label" dominant-baseline="middle">Creator (Julian &amp; Torben)</text><rect x="301" y="173" width="114.22641509433961" height="32" fill="#62E08A" rx="2"/><text x="358.1132075471698" y="190" class="d-segment" text-anchor="middle" dominant-baseline="middle">15%</text><rect x="417.2264150943396" y="173" width="165.0754716981132" height="32" fill="#3FA76A" rx="2"/><text x="499.7641509433962" y="190" class="d-segment" text-anchor="middle" dominant-baseline="middle">22%</text><rect x="584.3018867924528" y="173" width="0" height="32" fill="#8DB8A0" rx="2"/><rect x="584.3018867924528" y="173" width="244.9811320754717" height="32" fill="#6E8FB8" rx="2"/><text x="706.7924528301887" y="190" class="d-segment" text-anchor="middle" dominant-baseline="middle">32%</text><rect x="831.2830188679245" y="173" width="208.66037735849056" height="32" fill="#4E4D48" rx="2"/><text x="935.6132075471698" y="190" class="d-segment" text-anchor="middle" dominant-baseline="middle">27%</text><rect x="1041.9433962264152" y="173" width="27.056603773584904" height="32" fill="#F0705F" rx="2"/><text x="0" y="243" class="d-label" dominant-baseline="middle">Minister*innen</text><rect x="301" y="227" width="228.5095541401274" height="32" fill="#62E08A" rx="2"/><text x="415.2547770700637" y="244" class="d-segment" text-anchor="middle" dominant-baseline="middle">30%</text><rect x="531.5095541401274" y="227" width="277.5541401273885" height="32" fill="#3FA76A" rx="2"/><text x="670.2866242038217" y="244" class="d-segment" text-anchor="middle" dominant-baseline="middle">36%</text><rect x="811.063694267516" y="227" width="17.61783439490446" height="32" fill="#8DB8A0" rx="2"/><rect x="830.6815286624204" y="227" width="115.70700636942675" height="32" fill="#6E8FB8" rx="2"/><text x="888.5350318471338" y="244" class="d-segment" text-anchor="middle" dominant-baseline="middle">15%</text><rect x="948.3885350318471" y="227" width="100.99363057324841" height="32" fill="#4E4D48" rx="2"/><text x="998.8853503184713" y="244" class="d-segment" text-anchor="middle" dominant-baseline="middle">13%</text><rect x="1051.3821656050955" y="227" width="17.61783439490446" height="32" fill="#F0705F" rx="2"/><text x="0" y="297" class="d-label" dominant-baseline="middle">Yazgülü Zeybek</text><rect x="301" y="281" width="210.41379310344828" height="32" fill="#62E08A" rx="2"/><text x="406.2068965517241" y="298" class="d-segment" text-anchor="middle" dominant-baseline="middle">28%</text><rect x="513.4137931034483" y="281" width="236.96551724137933" height="32" fill="#3FA76A" rx="2"/><text x="631.8965517241379" y="298" class="d-segment" text-anchor="middle" dominant-baseline="middle">31%</text><rect x="752.3793103448276" y="281" width="11.275862068965518" height="32" fill="#8DB8A0" rx="2"/><rect x="765.655172413793" y="281" width="104.20689655172414" height="32" fill="#6E8FB8" rx="2"/><text x="817.7586206896551" y="298" class="d-segment" text-anchor="middle" dominant-baseline="middle">14%</text><rect x="871.8620689655172" y="281" width="197.13793103448276" height="32" fill="#4E4D48" rx="2"/><text x="970.4310344827586" y="298" class="d-segment" text-anchor="middle" dominant-baseline="middle">26%</text><rect x="1071" y="281" width="0" height="32" fill="#F0705F" rx="2"/><text x="0" y="351" class="d-label" dominant-baseline="middle">ohne Person</text><rect x="301" y="335" width="293.2631578947368" height="32" fill="#62E08A" rx="2"/><text x="447.63157894736844" y="352" class="d-segment" text-anchor="middle" dominant-baseline="middle">38%</text><rect x="596.2631578947369" y="335" width="160.10526315789474" height="32" fill="#3FA76A" rx="2"/><text x="676.3157894736843" y="352" class="d-segment" text-anchor="middle" dominant-baseline="middle">21%</text><rect x="758.3684210526317" y="335" width="18.263157894736842" height="32" fill="#8DB8A0" rx="2"/><rect x="778.6315789473686" y="335" width="131.1578947368421" height="32" fill="#6E8FB8" rx="2"/><text x="844.2105263157896" y="352" class="d-segment" text-anchor="middle" dominant-baseline="middle">17%</text><rect x="911.7894736842106" y="335" width="134.05263157894737" height="32" fill="#4E4D48" rx="2"/><text x="978.8157894736843" y="352" class="d-segment" text-anchor="middle" dominant-baseline="middle">18%</text><rect x="1047.842105263158" y="335" width="21.157894736842103" height="32" fill="#F0705F" rx="2"/>
+  </svg>
+      <div class="legende klein"><span><i style="background:#62E08A"></i>Support</span><span><i style="background:#3FA76A"></i>Zustimmung</span><span><i style="background:#8DB8A0"></i>Kritik am Gegner</span><span><i style="background:#6E8FB8"></i>Frage/Diskussion</span><span><i style="background:#4E4D48"></i>Sonstiges</span><span><i style="background:#F0705F"></i>Kritik an Grünen</span></div>
+      <div class="kacheln k3" style="margin-top:28px">
+        <div class="kachel "><div class="k-wert">801</div><div class="k-label">verschiedene Kommentierende</div><div class="k-sub">in der Stichprobe</div></div>
+        <div class="kachel "><div class="k-wert">39 %</div><div class="k-label">Kommentare von Wiederkehrern</div><div class="k-sub">128 Menschen kommentieren mehrfach</div></div>
+        <div class="kachel "><div class="k-wert">2,6 %</div><div class="k-label">ablehnend gegenüber Grünen</div><div class="k-sub">Obergrenze, Regel-Einordnung</div></div>
+      </div></div>
+    <div class="randspalte"><h3>Lesart</h3><p>Die Stichprobe zeigt eine <b>sehr freundliche Community</b>: Herzen, Sonnenblumen, „Danke“. Ablehnung gegenüber den Grünen liegt höchstens im niedrigen einstelligen Prozentbereich. Ein Grund ist auch die Moderation („Kein Bock auf Hate“).</p>
+    <p><b>39 % der Kommentare</b> kommen von Menschen, die mehrfach kommentieren. Es gibt einen festen Kern.</p>
+    <p>Die Creator-Reels haben den höchsten Anteil an <b>Fragen und Meinungen</b>. Das ist das Publikum, das noch nicht überzeugt ist.</p></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">34</span></div></section>
+<section class="folie "><div class="kicker">Zielgruppen-Analyse</div><h2>Vier Publikums-Gruppen</h2>
+  <div class="spalten s2"><div class="regel"><div class="regel-t">Die Kern-Community</div><div class="mono gruen klein">Mona · Ministerinnen · Grafiken</div><p>Mitglieder und Stammwähler*innen, eher 30+. Sie liken zuverlässig, kommentieren mit Emojis und tragen die hohe Interaktionsrate. Sie wollen Erfolge sehen („Wir haben geliefert“) und Rückenwind spüren.</p></div><div class="regel"><div class="regel-t">Die Popkultur-Jungen</div><div class="mono gruen klein">Tim · Gamescom · Fankultur · Julian</div><p>18–30, gaming-, fußball- und musikaffin, oft keine Follower. Sie sorgen für die großen Reichweiten, interagieren aber weniger. Hier finden sich Erstwählende für 2027.</p></div><div class="regel"><div class="regel-t">Die Communitys</div><div class="mono gruen klein">Albanien · Iran · Türkei · Queer</div><p>Diaspora- und queere Communitys, die Reels in eigene Netzwerke weitertragen, wenn sie direkt angesprochen werden. Das ist die größte ungenutzte Reichweitenquelle.</p></div><div class="regel"><div class="regel-t">Die Gegner-Beobachter*innen</div><div class="mono gruen klein">Merz-Clips · AfD · Gökçe</div><p>Politisch Interessierte aus der Mitte, die vor allem auf Konflikte mit CDU und AfD reagieren. Viele Kommentare und Shares, aber eine flüchtige Bindung.</p></div></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">35</span></div></section>
+<section class="folie "><div class="kicker">Zahlen, die motivieren</div><h2>Das habt ihr geschafft</h2>
+  <div class="kacheln k3 gross"><div class="kachel gut"><div class="k-wert">3,39 Mio.</div><div class="k-label">Plays in einem Jahr</div><div class="k-sub">fast 100-mal die Followerzahl</div></div><div class="kachel gut"><div class="k-wert">56</div><div class="k-label">Reels über 10 Tsd. Plays</div><div class="k-sub">mehr als jedes dritte Reel</div></div><div class="kachel gut"><div class="k-wert">16</div><div class="k-label">Reels über Followerzahl</div><div class="k-sub">erreichen klar Menschen außerhalb des Kanals</div></div><div class="kachel gut"><div class="k-wert">+40 %</div><div class="k-label">Interaktion seit Nov. 2025</div><div class="k-sub">Monatsmedian von 3,5 % auf 4,8–6,5 %</div></div><div class="kachel gut"><div class="k-wert">188.808</div><div class="k-label">Likes</div><div class="k-sub">rund 517 pro Tag</div></div><div class="kachel gut"><div class="k-wert">≈ 60 %</div><div class="k-label">Unterstützung in Kommentaren</div><div class="k-sub">Herzen, Dank, Zustimmung; Ablehnung unter 3&nbsp;%</div></div></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">36</span></div></section>
+<section class="folie "><div class="kicker">Was folgt daraus</div><h2>Zehn Empfehlungen für 2027</h2>
+  <ol class="empfehlungen"><li><b>Jedes Reel als Collab.</b> Mit Tim, Mona, Julian, Emine oder lokalen Accounts. Solo-Posts erreichen im Median nur einen Bruchteil.</li><li><b>Nie doppelt posten.</b> Lieber neu schneiden, mit neuem Hook und neuem Absender. Ein zweiter Upload bringt nur 2–17 % der Reichweite.</li><li><b>Konflikt vor Programm.</b> Ein Zitat, ein Angriff oder ein Verbot als Einstieg, das Programm als Antwort darauf. „31,2 Mrd.“ gehört in Satz 3, nicht in die Schlagzeile.</li><li><b>Yazgülü neu aufstellen.</b> Kürzer (unter 40 s), mit Community-Bezug (Türkei, Iran, Albanien) und Collabs mit Diaspora-Accounts. Das Albanien-Reel zeigt das Potenzial: 143 Tsd.</li><li><b>Mona als Gesicht der Kampagne.</b> Die Interaktion ist hoch, die Reichweite fehlt. Mehr Rede-Momente, persönliche Formate und Collabs mit Tim und Julian.</li><li><b>Creator-Formate als Serie.</b> Julian und Torben mit festen Serien („Kurz erklärt“, „Was heißt das für dich?“). Ihre Kommentare zeigen: Hier erreicht ihr Unentschlossene.</li><li><b>Erstwählende ab 16.</b> Bei der Landtagswahl 2027 wählen erstmals 16-Jährige. Das spricht für Gen-Z-Formate von Julian und Tim mit Bezug zu Schule, Ausbildung und Wohnen.</li><li><b>Hook in 1,5 Sekunden.</b> Kein Intro, keine Begrüßung: mitten in der Szene starten, Schlagzeile groß, erster Satz als These.</li><li><b>Communitys gezielt ansprechen.</b> Reels für die Diaspora und für queere Menschen mit Collab-Partnern aus der Community. Das sind Reichweiten-Inseln.</li><li><b>Insights exportieren.</b> Follower-Verlauf, Demografie, Shares, Saves und Watchtime aus den Instagram-Insights ergänzen. Erst damit lassen sich Zielgruppen messen statt schätzen.</li></ol><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">37</span></div></section>
+<section class="folie "><div class="kicker">TikTok · @gruenenrw</div><h2>TikTok: kleiner, aber engagierter</h2>
+  <div class="kacheln k4">
+    <div class="kachel "><div class="k-wert">14.200</div><div class="k-label">Fans auf TikTok</div><div class="k-sub">Instagram: 35.616</div></div>
+    <div class="kachel "><div class="k-wert">435 Tsd.</div><div class="k-label">Plays in 12 Monaten</div><div class="k-sub">118 Videos · Instagram: 3,39 Mio.</div></div>
+    <div class="kachel schlecht"><div class="k-wert">945</div><div class="k-label">Plays im Median</div><div class="k-sub">Instagram: 7,2 Tsd.</div></div>
+    <div class="kachel gut"><div class="k-wert">12,4 %</div><div class="k-label">Interaktion (Median)</div><div class="k-sub">Likes + Kommentare + Shares + Saves</div></div>
+  </div>
+  <div class="spalten s2b">
+    <div><div class="d-titel">Plays je Monat auf TikTok (Summe)</div><svg class="diagramm" viewBox="0 0 1080 400" width="1080" height="400">
+    <line x1="90" x2="1050" y1="346" y2="346" stroke="rgba(238,237,230,.13)" stroke-dasharray="0"/>
+      <text x="76" y="346" class="d-achse" text-anchor="end" dominant-baseline="middle">0</text><line x1="90" x2="1050" y1="267" y2="267" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="267" class="d-achse" text-anchor="end" dominant-baseline="middle">34 Tsd.</text><line x1="90" x2="1050" y1="188" y2="188" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="188" class="d-achse" text-anchor="end" dominant-baseline="middle">68 Tsd.</text><line x1="90" x2="1050" y1="109" y2="109" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="109" class="d-achse" text-anchor="end" dominant-baseline="middle">101 Tsd.</text><line x1="90" x2="1050" y1="30" y2="30" stroke="rgba(238,237,230,.13)" stroke-dasharray="3 6"/>
+      <text x="76" y="30" class="d-achse" text-anchor="end" dominant-baseline="middle">135 Tsd.</text>
+    <text x="90" y="382" class="d-achse" text-anchor="middle">Nov</text><text x="177.27272727272728" y="382" class="d-achse" text-anchor="middle">Dez</text><text x="264.54545454545456" y="382" class="d-achse" text-anchor="middle">Jan ’26</text><text x="351.8181818181818" y="382" class="d-achse" text-anchor="middle">Feb</text><text x="439.0909090909091" y="382" class="d-achse" text-anchor="middle">Mär</text><text x="526.3636363636364" y="382" class="d-achse" text-anchor="middle">Apr</text><text x="613.6363636363636" y="382" class="d-achse" text-anchor="middle">Mai</text><text x="700.9090909090909" y="382" class="d-achse" text-anchor="middle">Jun</text><text x="788.1818181818182" y="382" class="d-achse" text-anchor="middle">Jul</text><text x="875.4545454545455" y="382" class="d-achse" text-anchor="middle">Aug</text><text x="962.7272727272727" y="382" class="d-achse" text-anchor="middle">Sep</text><text x="1050" y="382" class="d-achse" text-anchor="middle">Okt</text>
+    <path d="M90.0,290.7 L177.3,306.4 L264.5,308.5 L351.8,331.0 L439.1,320.1 L526.4,322.8 L613.6,202.2 L700.9,307.1 L788.2,71.2 L875.5,157.6 L962.7,202.8 L1050.0,318.4 L1050,346 L90,346 Z" fill="#62E08A" opacity=".08"/>
+    <path d="M90.0,290.7 L177.3,306.4 L264.5,308.5 L351.8,331.0 L439.1,320.1 L526.4,322.8 L613.6,202.2 L700.9,307.1 L788.2,71.2 L875.5,157.6 L962.7,202.8 L1050.0,318.4" fill="none" stroke="#62E08A" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="90" cy="290.67962676857576" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="177.27272727272728" cy="306.37334967110746" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="264.54545454545456" cy="308.549919573661" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="351.8181818181818" cy="330.96251759383904" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="439.0909090909091" cy="320.0679912039119" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="526.3636363636364" cy="322.7840328312399" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="613.6363636363636" cy="202.17590402493826" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="700.9090909090909" cy="307.09264530414015" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="788.1818181818182" cy="71.21739130434781" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="875.4545454545455" cy="157.58658090320645" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="962.7272727272727" cy="202.83915064760475" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/><circle cx="1050" cy="318.3514902614475" r="6" fill="#62E08A" stroke="#0d0d0c" stroke-width="2"/>
+    <text x="613.6363636363636" y="184.17590402493826" class="d-notiz" text-anchor="middle">Rosemondy</text><text x="788.1818181818182" y="53.217391304347814" class="d-notiz" text-anchor="middle">Albanien</text><text x="875.4545454545455" y="139.58658090320645" class="d-notiz" text-anchor="middle">Rhein</text><text x="962.7272727272727" y="184.83915064760475" class="d-notiz" text-anchor="middle">Umfrage</text>
+  </svg></div>
+    <div class="randspalte"><h3>Lesart</h3><p>Auf TikTok erreicht ein normales Video nur rund <b>1.000 Plays</b>, ein Siebtel von Instagram. Fast die ganze Reichweite kommt von <b>vier Videos</b> (Albanien, Rhein, Rosemondy, Umfrage). Sie machen zusammen rund 60 % aller TikTok-Plays aus.</p>
+    <p>Wer schaut, interagiert aber stark: Die Interaktion liegt bei über 12 %, und Shares und Saves sind sichtbar (2.237 Shares, 2.026 Saves).</p>
+    <p>Seit Juli steigt die Monatsreichweite, getragen von Community- und Creator-Videos.</p></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify (clockworks/tiktok-scraper), Abruf 21.10.2026 · eigene Auswertung</span><span class="seite">38</span></div></section>
+<section class="folie "><div class="kicker">TikTok · Was dort läuft</div><h2>Die fünf stärksten TikToks</h2>
+  <div class="raster10 tt"><div class="r10"><div class="r10-rang">1</div><img src="bilder/tiktok/7658596807613631777.jpg"/><div class="r10-text">
+    <div class="r10-plays">87 Tsd.</div><div class="r10-titel">Albanien steht nicht zum Verkauf</div><div class="leise mono">04.07.2026</div>
+    <div class="r10-extra">9.556 Likes · 1.068 Shares · 726 Saves<br/>Instagram: 143 Tsd. · 77 s</div></div></div><div class="r10"><div class="r10-rang">2</div><img src="bilder/tiktok/7675399193057381664.jpg"/><div class="r10-text">
+    <div class="r10-plays">74 Tsd.</div><div class="r10-titel">Torben: Rhein-Niedrigpegel</div><div class="leise mono">18.08.2026</div>
+    <div class="r10-extra">4.938 Likes · 179 Shares · 228 Saves<br/>Instagram: 41 Tsd. · 39 s</div></div></div><div class="r10"><div class="r10-rang">3</div><img src="bilder/tiktok/7640110333914352928.jpg"/><div class="r10-text">
+    <div class="r10-plays">54 Tsd.</div><div class="r10-titel">Rosemondy: Vielfalt an Schulen</div><div class="leise mono">15.05.2026</div>
+    <div class="r10-extra">5.490 Likes · 411 Shares · 249 Saves<br/>Instagram: 12 Tsd. · 72 s</div></div></div><div class="r10"><div class="r10-rang">4</div><img src="bilder/tiktok/7689094094521421089.jpg"/><div class="r10-text">
+    <div class="r10-plays">37 Tsd.</div><div class="r10-titel">Torben: Umfrage – „Manifesting 20 %“</div><div class="leise mono">24.09.2026</div>
+    <div class="r10-extra">2.733 Likes · 41 Shares · 85 Saves<br/>nur auf TikTok · 7 s</div></div></div><div class="r10"><div class="r10-rang">5</div><img src="bilder/tiktok/7568922099448876310.jpg"/><div class="r10-text">
+    <div class="r10-plays">13 Tsd.</div><div class="r10-titel">Gleichstellung Josefine Paul</div><div class="leise mono">04.11.2025</div>
+    <div class="r10-extra">141 Likes · 31 Shares · 15 Saves<br/>Instagram: 5,0 Tsd. · 61 s</div></div></div></div>
+  <div class="spalten s3" style="margin-top:30px"><div class="regel"><div class="regel-t">Gesichter von außen und Creator</div><p>Unter den fünf stärksten TikToks sind zwei von Torben und eines mit Rosemondy, einer jungen Ideengeberin. Auf TikTok zählen <b>Menschen, die wie die Zielgruppe aussehen</b>, mehr als Ämter.</p></div><div class="regel"><div class="regel-t">Communitys tragen auch hier</div><p>Albanien ist auch auf TikTok die Nummer 1 (86,8 Tsd., 1.068 Shares). Diaspora-Communitys teilen auf TikTok fast so stark wie auf Instagram, ganz ohne Collab-Funktion.</p></div><div class="regel"><div class="regel-t">Was TikTok jetzt braucht</div><p><b>Eigene TikTok-Formate</b> mit Torben und Julian statt Zweitverwertung, <b>Antworten auf Kommentare</b> per Video (die Funktion wird schon genutzt) und <b>Tim mit eigenem TikTok-Auftritt</b>, weil seine Instagram-Reichweite dort nicht ankommt.</p></div></div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify (clockworks/tiktok-scraper), Abruf 21.10.2026 · eigene Auswertung</span><span class="seite">39</span></div></section>
+<section class="folie "><div class="kicker">TikTok · Gleiches Video, andere Plattform</div><h2>Was auf TikTok anders funktioniert</h2>
+  <div class="spalten s2b">
+    <div><div class="d-titel">Gleiches Video: Plays TikTok ÷ Instagram (83 Paare, Median 14 %)</div>
+      <svg class="diagramm" viewBox="0 -4 1080 736" width="1080" height="736"><g transform="translate(0,0)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Rosemondy Schulen</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">ohne Person · IG 12 Tsd. · TT 54 Tsd.</text>
+      <rect x="420" y="15" width="510" height="22" rx="3" fill="#62E08A"/>
+      <text x="942" y="27" class="d-wert" dominant-baseline="middle">464 %</text>
+    </g><g transform="translate(0,52)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">AfD Gefahr Wirtschaft</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Yazgülü · IG 2,9 Tsd. · TT 11 Tsd.</text>
+      <rect x="420" y="15" width="421.71244219683894" height="22" rx="3" fill="#62E08A"/>
+      <text x="853.712442196839" y="27" class="d-wert" dominant-baseline="middle">384 %</text>
+    </g><g transform="translate(0,104)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Gleichstellung Josefine Paul</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Josefine · IG 5,0 Tsd. · TT 13 Tsd.</text>
+      <rect x="420" y="15" width="292.80579285601505" height="22" rx="3" fill="#62E08A"/>
+      <text x="724.805792856015" y="27" class="d-wert" dominant-baseline="middle">267 %</text>
+    </g><g transform="translate(0,156)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Rhein-Niedrigpegel</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Torben · IG 41 Tsd. · TT 74 Tsd.</text>
+      <rect x="420" y="15" width="197.9783813824169" height="22" rx="3" fill="#62E08A"/>
+      <text x="629.978381382417" y="27" class="d-wert" dominant-baseline="middle">180 %</text>
+    </g><g transform="translate(0,208)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Welche Zahl bin ich – politisch</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Torben + Julian · IG 3,7 Tsd. · TT 3,9 Tsd.</text>
+      <rect x="420" y="15" width="113.45225819479033" height="22" rx="3" fill="#62E08A"/>
+      <text x="545.4522581947904" y="27" class="d-wert" dominant-baseline="middle">103 %</text>
+    </g><g transform="translate(0,260)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Albanien</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Yazgülü · IG 143 Tsd. · TT 87 Tsd.</text>
+      <rect x="420" y="15" width="66.46098218216383" height="22" rx="3" fill="#55534D"/>
+      <text x="498.46098218216383" y="27" class="d-wert" dominant-baseline="middle">61 %</text>
+    </g><g transform="translate(0,312)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">KI-Wahlomaten Sachsen-Anhalt</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Torben · IG 19 Tsd. · TT 6,8 Tsd.</text>
+      <rect x="420" y="15" width="39.66335864138832" height="22" rx="3" fill="#55534D"/>
+      <text x="471.6633586413883" y="27" class="d-wert" dominant-baseline="middle">36 %</text>
+    </g><g transform="translate(0,364)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Iran-Rede Neda Paiabandi</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">ohne Person · IG 47 Tsd. · TT 12 Tsd.</text>
+      <rect x="420" y="15" width="27.841324645670397" height="22" rx="3" fill="#55534D"/>
+      <text x="459.8413246456704" y="27" class="d-wert" dominant-baseline="middle">25 %</text>
+    </g><g transform="translate(0,416)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">20-Euro-Traumstadt-Challenge</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Julian + Torben · IG 9,4 Tsd. · TT 1,9 Tsd.</text>
+      <rect x="420" y="15" width="21.835906584032028" height="22" rx="3" fill="#55534D"/>
+      <text x="453.83590658403205" y="27" class="d-wert" dominant-baseline="middle">20 %</text>
+    </g><g transform="translate(0,468)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Mein neuer 9to5 – Vorstellung</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Julian · IG 42 Tsd. · TT 7,0 Tsd.</text>
+      <rect x="420" y="15" width="18.463492918131752" height="22" rx="3" fill="#55534D"/>
+      <text x="450.46349291813175" y="27" class="d-wert" dominant-baseline="middle">17 %</text>
+    </g><g transform="translate(0,520)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Meccha Chameleon Gamescom</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Tim + Ricarda · IG 15 Tsd. · TT 834</text>
+      <rect x="420" y="15" width="5.982012216588891" height="22" rx="3" fill="#F0705F"/>
+      <text x="437.9820122165889" y="27" class="d-wert" dominant-baseline="middle">5 %</text>
+    </g><g transform="translate(0,572)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Hitze – Bundesregierung</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">Tim · IG 31 Tsd. · TT 923</text>
+      <rect x="420" y="15" width="3.2986654565079987" height="22" rx="3" fill="#F0705F"/>
+      <text x="435.298665456508" y="27" class="d-wert" dominant-baseline="middle">3 %</text>
+    </g><g transform="translate(0,624)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">Merz-Clip „Herr Strempel“</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">ohne Person · IG 481 Tsd. · TT 13 Tsd.</text>
+      <rect x="420" y="15" width="3.0395317976763754" height="22" rx="3" fill="#F0705F"/>
+      <text x="435.0395317976764" y="27" class="d-wert" dominant-baseline="middle">3 %</text>
+    </g><g transform="translate(0,676)">
+      <text x="0" y="28" class="d-label" dominant-baseline="middle">ICE AfD-Verbot</text>
+      <text x="0" y="47" class="d-sub" dominant-baseline="middle">ohne Person · IG 116 Tsd. · TT 2,5 Tsd.</text>
+      <rect x="420" y="15" width="3" height="22" rx="3" fill="#F0705F"/>
+      <text x="435" y="27" class="d-wert" dominant-baseline="middle">2 %</text>
+    </g></svg></div>
+    <div class="randspalte"><h3>Lesart</h3><p>Im Median erreicht dasselbe Video auf TikTok nur etwa ein Siebtel der Instagram-Plays. Die Ausnahmen zeigen, was TikTok belohnt:</p>
+    <p><b>Mehr als auf Instagram:</b> junge Stimmen (Rosemondy, Torben), Trend-Formate („Welche Zahl bin ich“) und Reizthemen mit Diskussion (AfD, Gleichstellung: über 300 Kommentare).</p>
+    <p><b>Fast nichts:</b> Tim-Reels und Gamescom (2–5 %). Auf Instagram leben sie von Tims Collab-Reichweite, die es auf TikTok nicht gibt. Auch die großen Instagram-Hits ohne Gesicht (Merz-Clip, ICE) kommen auf TikTok nur auf 2–3 %.</p>
+    <div class="hand-notiz">TikTok braucht eigene Formate, nicht nur Zweitverwertung</div></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify (clockworks/tiktok-scraper), Abruf 21.10.2026 · eigene Auswertung</span><span class="seite">40</span></div></section>
+<section class="folie "><div class="kicker">Anhang</div><h2>Dateien &amp; Nachweise</h2>
+  <div class="spalten s2">
+    <div class="karte"><div class="k-titel">Im Projektordner</div><p class="mono klein">analysen/gruenenrw_2026-10-21/<br/>· daten.json – alle Kennzahlen je Reel<br/>· reels.csv – Tabelle: Datum, Plays, Likes, Kommentare, Person, Format, Thema, Skript<br/>· zuordnung.tsv – Personen/Format/Thema je Reel<br/>· praesentation.mjs, texte.mjs, stil.css – diese Präsentation<br/><br/>reels/&lt;account&gt;/&lt;code&gt;/<br/>· bericht.md – Zahlen, Caption, Transkript, Schnitte<br/>· hook.jpg, kontaktbogen.jpg, bilder/<br/><br/>reel-skripte/ – Deep-Dive- und Creator-Skripte mit Bildebene<br/><br/>TikTok: reels/.apify-cache/tiktok_gruenenrw_…json, bilder/tiktok/ (Cover)</p></div>
+    <div class="karte"><div class="k-titel">Definitionen</div><p><b>Plays:</b> Wiedergaben laut Instagram (videoPlayCount), Stand 20.10.2026. Collab-Reels zählen gemeinsam für beide Accounts.<br/><b>Interaktionsrate:</b> (Likes + Kommentare) / Plays. Shares und Saves sind öffentlich nicht sichtbar.<br/><b>Median:</b> mittlerer Wert, robust gegen Ausreißer.<br/><b>Viral:</b> ≥ 3× Median (≥ 21.714 Plays). <b>Flop:</b> &lt; ⅓ Median (&lt; 2.413 Plays).<br/><b>Kommentare:</b> nur die ≈ 8 neuesten je Reel, regelbasiert eingeordnet. Das ist eine Tendenz, keine Messung.</p></div>
+  </div><div class="fuss"><span>@gruenenrw · Reel-Analyse 21.10.2025 – 20.10.2026</span><span>Quelle: Apify-Abruf 20.10.2026 · eigene Auswertung</span><span class="seite">41</span></div></section></div>
+<div id="leiste"><div id="fortschritt"></div></div><div id="zaehler"></div>
+<div id="hilfe">→ weiter · ← zurück · F Vollbild · O Übersicht · R Animation wiederholen · B Schwarzbild</div>
+<div id="schwarz"></div><div id="uebersicht"></div>
+<script src="vendor/gsap.min.js"></script><script src="live.js"></script></body></html>

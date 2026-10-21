@@ -1,0 +1,28 @@
+/* Animierte Live-Präsentation: eine Folie auf der Bühne, auf das Fenster skaliert. */
+html, body { width: 100%; height: 100%; overflow: hidden; background: #050505; }
+body.live { cursor: default; }
+#buehne { position: absolute; left: 50%; top: 50%; width: 1920px; height: 1080px; transform-origin: 0 0; overflow: hidden; background: var(--papier); box-shadow: 0 0 80px rgba(0,0,0,.6); }
+body.live .folie { position: absolute; inset: 0; visibility: hidden; page-break-after: auto; break-after: auto; will-change: transform, opacity; }
+body.live .folie.aktiv { visibility: visible; }
+
+/* Wortweise Headline-Masken */
+.w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+.wi { display: inline-block; will-change: transform; }
+
+/* Bedienleiste */
+#leiste { position: fixed; left: 0; right: 0; bottom: 0; height: 4px; background: rgba(238,237,230,.08); z-index: 10; }
+#fortschritt { height: 100%; width: 0; background: #62E08A; transition: width .5s cubic-bezier(.2,.8,.2,1); }
+#zaehler { position: fixed; right: 18px; bottom: 14px; font: 500 13px "JetBrains Mono", monospace; color: rgba(238,237,230,.45); z-index: 10; letter-spacing: .06em; transition: opacity .4s; }
+#hilfe { position: fixed; left: 18px; bottom: 14px; font: 400 12px "JetBrains Mono", monospace; color: rgba(238,237,230,.35); z-index: 10; letter-spacing: .04em; transition: opacity .6s; }
+body.ruhig #zaehler, body.ruhig #hilfe { opacity: 0; }
+#schwarz { position: fixed; inset: 0; background: #000; z-index: 20; opacity: 0; pointer-events: none; transition: opacity .4s; }
+body.schwarz #schwarz { opacity: 1; }
+
+/* Übersicht (Taste O) */
+#uebersicht { position: fixed; inset: 0; z-index: 30; background: rgba(5,5,5,.96); overflow: auto; padding: 40px; display: none; }
+body.uebersicht #uebersicht { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; align-content: start; }
+.ue-karte { cursor: pointer; border: 1px solid rgba(238,237,230,.12); border-radius: 6px; padding: 14px 16px; color: #EEEDE6; font: 500 15px "Space Grotesk", sans-serif; background: #111; transition: border-color .2s, transform .2s; }
+.ue-karte:hover, .ue-karte.aktiv { border-color: #62E08A; transform: translateY(-2px); }
+.ue-karte span { display: block; font: 500 12px "JetBrains Mono", monospace; color: #62E08A; margin-bottom: 6px; }
+
+@media (prefers-reduced-motion: reduce) { #fortschritt { transition: none; } }
